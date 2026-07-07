@@ -20,7 +20,7 @@ public class UpdateRestaurantUseCase {
 
     public Restaurant update(RestaurantDTO.PutRequest request, UUID id) {
         if (!ownerRepository.existsById(request.ownerId())) {
-            throw new UserNotFoundException("Could not create restaurant: The provided Owner does not exist");
+            throw new UserNotFoundException("Could not update restaurant: The provided Owner does not exist");
         }
 
         var restaurant = restaurantRepository.findById(id);

@@ -5,15 +5,15 @@ import br.com.gabifontainhas.techchallenge.infrastructure.persistance.entity.Own
 
 public class OwnerMapper {
 
-    public static OwnerJpaEntity toJpaEntity(Owner owner) {
-        if (owner == null) return null;
+    public static OwnerJpaEntity toJpaEntity(Owner domain) {
+        if (domain == null) return null;
 
         return new OwnerJpaEntity(
-                owner.getId(),
-                owner.getEmail(),
-                owner.getName(),
-                owner.getRestaurantName(),
-                owner.getLastUpdate()
+                domain.getId(),
+                domain.getEmail(),
+                domain.getName(),
+                domain.getRestaurantName(),
+                domain.getLastUpdate()
         );
     }
 

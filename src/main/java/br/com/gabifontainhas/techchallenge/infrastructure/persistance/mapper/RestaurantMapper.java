@@ -30,12 +30,12 @@ public class RestaurantMapper {
         );
     }
 
-    public static Restaurant toDomain(RestaurantJpaEntity entity) {
-        if (entity == null) return null;
+    public static Restaurant toDomain(RestaurantJpaEntity jpaEntity) {
+        if (jpaEntity == null) return null;
 
         Address domainAddress = null;
-        if (entity.getAddress() != null) {
-            var addressEmbeddable = entity.getAddress();
+        if (jpaEntity.getAddress() != null) {
+            var addressEmbeddable = jpaEntity.getAddress();
             domainAddress = new Address(
                     addressEmbeddable.getStreet(),
                     addressEmbeddable.getNumber(),
@@ -47,12 +47,12 @@ public class RestaurantMapper {
         }
 
         return new Restaurant(
-                entity.getId(),
-                entity.getName(),
+                jpaEntity.getId(),
+                jpaEntity.getName(),
                 domainAddress,
-                entity.getCuisineType(),
-                entity.getOperatingHours(),
-                entity.getOwnerId()
+                jpaEntity.getCuisineType(),
+                jpaEntity.getOperatingHours(),
+                jpaEntity.getOwnerId()
         );
     }
 }
