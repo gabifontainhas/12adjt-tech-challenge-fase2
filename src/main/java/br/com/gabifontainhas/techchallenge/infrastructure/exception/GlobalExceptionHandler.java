@@ -1,9 +1,6 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.exception;
 
-import br.com.gabifontainhas.techchallenge.application.exception.EmailAlreadyExistsException;
-import br.com.gabifontainhas.techchallenge.application.exception.RestaurantAlreadyExistsException;
-import br.com.gabifontainhas.techchallenge.application.exception.RestaurantNotFoundException;
-import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
+import br.com.gabifontainhas.techchallenge.application.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -31,6 +28,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return problem;
     }
 
+    @ExceptionHandler(MenuItemNotFoundException.class)
+    public ProblemDetail handle(MenuItemNotFoundException ex) {
+        var problem = ProblemDetail.forStatusAndDetail(
+                HttpStatus.NOT_FOUND,
+                ex.getMessage()
+        );
+        return problem;
+    }
+
     @ExceptionHandler(EmailAlreadyExistsException.class)
     public ProblemDetail handle(EmailAlreadyExistsException ex) {
         var problem = ProblemDetail.forStatusAndDetail(
@@ -42,6 +48,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(RestaurantAlreadyExistsException.class)
     public ProblemDetail handle(RestaurantAlreadyExistsException ex) {
+        var problem = ProblemDetail.forStatusAndDetail(
+                HttpStatus.UNPROCESSABLE_CONTENT,
+                ex.getMessage()
+        );
+        return problem;
+    }
+
+    @ExceptionHandler(MenuItemAlreadyExistsException.class)
+    public ProblemDetail handle(MenuItemAlreadyExistsException ex) {
         var problem = ProblemDetail.forStatusAndDetail(
                 HttpStatus.UNPROCESSABLE_CONTENT,
                 ex.getMessage()
