@@ -1,6 +1,5 @@
 package br.com.gabifontainhas.techchallenge.application.usecases.menuitem;
 
-import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.MenuItemRepository;
 import br.com.gabifontainhas.techchallenge.application.usecases.dto.MenuItemDTO;
 import br.com.gabifontainhas.techchallenge.domain.entities.MenuItem;

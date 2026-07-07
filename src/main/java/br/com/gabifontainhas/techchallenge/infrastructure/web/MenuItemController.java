@@ -1,7 +1,6 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web;
 
 import br.com.gabifontainhas.techchallenge.application.usecases.dto.MenuItemDTO;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.RestaurantDTO;
 import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.CreateMenuItemUseCase;
 import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.DeleteMenuItemUseCase;
 import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.ListMenuItemsUseCase;

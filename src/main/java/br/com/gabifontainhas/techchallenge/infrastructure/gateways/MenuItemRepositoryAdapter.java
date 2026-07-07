@@ -1,13 +1,10 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.gateways;
 
 import br.com.gabifontainhas.techchallenge.application.exception.MenuItemNotFoundException;
-import br.com.gabifontainhas.techchallenge.application.exception.RestaurantNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.MenuItemRepository;
 import br.com.gabifontainhas.techchallenge.domain.entities.MenuItem;
 import br.com.gabifontainhas.techchallenge.infrastructure.persistance.MenuItemJpaRepository;
-import br.com.gabifontainhas.techchallenge.infrastructure.persistance.RestaurantJpaRepository;
 import br.com.gabifontainhas.techchallenge.infrastructure.persistance.mapper.MenuItemMapper;
-import br.com.gabifontainhas.techchallenge.infrastructure.persistance.mapper.RestaurantMapper;
 
 import java.util.List;
 import java.util.UUID;

@@ -1,7 +1,6 @@
 package br.com.gabifontainhas.techchallenge.application.usecases.dto;
 
 import br.com.gabifontainhas.techchallenge.domain.entities.MenuItem;
-import br.com.gabifontainhas.techchallenge.domain.entities.Restaurant;
 
 import java.math.BigDecimal;
 import java.util.UUID;

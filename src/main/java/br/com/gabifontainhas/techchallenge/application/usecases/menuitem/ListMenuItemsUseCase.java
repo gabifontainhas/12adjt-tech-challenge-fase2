@@ -4,7 +4,6 @@ import br.com.gabifontainhas.techchallenge.application.exception.RestaurantNotFo
 import br.com.gabifontainhas.techchallenge.application.gateway.MenuItemRepository;
 import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
 import br.com.gabifontainhas.techchallenge.domain.entities.MenuItem;
-import br.com.gabifontainhas.techchallenge.domain.entities.Restaurant;
 
 import java.util.List;
 import java.util.UUID;
