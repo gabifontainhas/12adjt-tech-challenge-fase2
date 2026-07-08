@@ -4,7 +4,7 @@ import br.com.gabifontainhas.techchallenge.application.exception.MenuItemAlready
 import br.com.gabifontainhas.techchallenge.application.exception.RestaurantNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.MenuItemRepository;
 import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.MenuItemDTO;
+import br.com.gabifontainhas.techchallenge.application.usecases.dto.CreateMenuItemCommand;
 import br.com.gabifontainhas.techchallenge.domain.entities.MenuItem;
 
 public class CreateMenuItemUseCase {
@@ -16,7 +16,7 @@ public class CreateMenuItemUseCase {
         this.menuItemRepository = menuItemRepository;
     }
 
-    public MenuItem create(MenuItemDTO.PostRequest request) {
+    public MenuItem create(CreateMenuItemCommand request) {
         if (!restaurantRepository.existsById(request.restaurantId())) {
             throw new RestaurantNotFoundException("Could not create menu item: The provided Restaurant does not exist");
         }

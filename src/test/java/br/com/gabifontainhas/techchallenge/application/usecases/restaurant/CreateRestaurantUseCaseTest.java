@@ -3,9 +3,9 @@ package br.com.gabifontainhas.techchallenge.application.usecases.restaurant;
 import br.com.gabifontainhas.techchallenge.application.exception.RestaurantAlreadyExistsException;
 import br.com.gabifontainhas.techchallenge.application.gateway.OwnerRepository;
 import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.AddressDTO;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.RestaurantDTO;
+import br.com.gabifontainhas.techchallenge.application.usecases.dto.CreateRestaurantCommand;
 import br.com.gabifontainhas.techchallenge.domain.entities.Restaurant;
+import br.com.gabifontainhas.techchallenge.domain.valueobjects.Address;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,19 +38,18 @@ class CreateRestaurantUseCaseTest {
         // Arrange
         var ownerId = UUID.randomUUID();
 
-        var addressRequest = new AddressDTO.Request("Main Street", "123", "Downtown", "New York", "NY", "12345000");
-        var addressDomain = addressRequest.toDomain();
+        var address = new Address("Main Street", "123", "Downtown", "New York", "NY", "12345000");
 
-        var request = new RestaurantDTO.PostRequest(
+        var request = new CreateRestaurantCommand(
                 "Holy Burger",
-                addressRequest,
+                address,
                 "Fast Food",
                 "08:00-22:00",
                 ownerId
         );
         var expectedRestaurant = new Restaurant(
                 "Holy Burger",
-                addressDomain,
+                address,
                 "Fast Food",
                 "08:00-22:00",
                 ownerId
@@ -87,11 +86,11 @@ class CreateRestaurantUseCaseTest {
         // Arrange
         var ownerId = UUID.randomUUID();
 
-        var addressRequest = new AddressDTO.Request("Main Street", "123", "Downtown", "New York", "NY", "12345000");
+        var address = new Address("Main Street", "123", "Downtown", "New York", "NY", "12345000");
 
-        var request = new RestaurantDTO.PostRequest(
+        var request = new CreateRestaurantCommand(
                 "Holy Burger",
-                addressRequest,
+                address,
                 "Fast Food",
                 "08:00-22:00",
                 ownerId

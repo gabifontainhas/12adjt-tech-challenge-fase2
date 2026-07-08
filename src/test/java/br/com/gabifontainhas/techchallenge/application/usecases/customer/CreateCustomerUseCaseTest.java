@@ -2,7 +2,7 @@ package br.com.gabifontainhas.techchallenge.application.usecases.customer;
 
 import br.com.gabifontainhas.techchallenge.application.exception.EmailAlreadyExistsException;
 import br.com.gabifontainhas.techchallenge.application.gateway.CustomerRepository;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.CustomerDTO;
+import br.com.gabifontainhas.techchallenge.application.usecases.dto.CreateCustomerCommand;
 import br.com.gabifontainhas.techchallenge.domain.entities.Customer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ public class CreateCustomerUseCaseTest {
     @DisplayName("Should create a customer successfully when data is valid and the email does not exist")
     void shouldCreateCustomerSuccessfully() {
         // Arrange
-        var request = new CustomerDTO.PostRequest("jimhalpert@dundermifflin.com", "Jim Halpert", "11999999999");
+        var request = new CreateCustomerCommand("jimhalpert@dundermifflin.com", "Jim Halpert", "11999999999");
         var savedCustomer = new Customer(request.email(), request.name(), request.phoneNumber());
 
         when(customerRepository.existsByEmail(request.email())).thenReturn(false);
@@ -50,7 +50,7 @@ public class CreateCustomerUseCaseTest {
     @DisplayName("Should throw EmailAlreadyExistsException when email is already registered")
     void shouldThrowExceptionWhenEmailAlreadyExists() {
         // Arrange
-        var request = new CustomerDTO.PostRequest("jimhalpert@dundermifflin.com", "Jim Halpert", "11999999999");
+        var request = new CreateCustomerCommand("jimhalpert@dundermifflin.com", "Jim Halpert", "11999999999");
 
         when(customerRepository.existsByEmail(request.email())).thenReturn(true);
 

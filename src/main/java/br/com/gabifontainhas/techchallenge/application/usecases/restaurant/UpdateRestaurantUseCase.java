@@ -1,11 +1,11 @@
 package br.com.gabifontainhas.techchallenge.application.usecases.restaurant;
 
 import br.com.gabifontainhas.techchallenge.application.exception.RestaurantNotFoundException;
+import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.OwnerRepository;
 import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.RestaurantDTO;
+import br.com.gabifontainhas.techchallenge.application.usecases.dto.UpdateRestaurantCommand;
 import br.com.gabifontainhas.techchallenge.domain.entities.Restaurant;
-import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
 
 import java.util.UUID;
 
@@ -19,14 +19,13 @@ public class UpdateRestaurantUseCase {
         this.ownerRepository = ownerRepository;
     }
 
-    public Restaurant update(RestaurantDTO.PutRequest request, UUID id) {
+    public Restaurant update(UpdateRestaurantCommand request, UUID id) {
         if (!ownerRepository.existsById(request.ownerId())) {
             throw new UserNotFoundException("Could not update restaurant: The provided Owner does not exist");
         }
 
         var restaurant = restaurantRepository.findById(id).orElseThrow(() -> new RestaurantNotFoundException("Restaurant not found"));
-        var address = request.address().toDomain();
-        restaurant.update(request.name(), address, request.cuisineType(), request.operatingHours(), request.ownerId());
+        restaurant.update(request.name(), request.address(), request.cuisineType(), request.operatingHours(), request.ownerId());
         return restaurantRepository.save(restaurant);
     }
 }

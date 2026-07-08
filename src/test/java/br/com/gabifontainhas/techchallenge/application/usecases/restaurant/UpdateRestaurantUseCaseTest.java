@@ -4,9 +4,9 @@ import br.com.gabifontainhas.techchallenge.application.exception.RestaurantNotFo
 import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.OwnerRepository;
 import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.AddressDTO;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.RestaurantDTO;
+import br.com.gabifontainhas.techchallenge.application.usecases.dto.UpdateRestaurantCommand;
 import br.com.gabifontainhas.techchallenge.domain.entities.Restaurant;
+import br.com.gabifontainhas.techchallenge.domain.valueobjects.Address;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -40,30 +40,28 @@ class UpdateRestaurantUseCaseTest {
         var ownerId = UUID.randomUUID();
         var restaurantId = UUID.randomUUID();
 
-        var addressOld = new AddressDTO.Request("Main Street", "123", "Downtown", "New York", "NY", "12345000");
-        var addressOldDomain = addressOld.toDomain();
+        var addressOld = new Address("Main Street", "123", "Downtown", "New York", "NY", "12345000");
 
         var oldRestaurant = new Restaurant(restaurantId,
                 "Mario Pizza",
-                addressOldDomain,
+                addressOld,
                 "Italian Food",
                 "18:00-23:00",
                 ownerId
         );
 
-        var addressRequest = new AddressDTO.Request("5th Street", "987", "Center", "New Jersey", "NY", "12345999");
-        var addressDomain = addressRequest.toDomain();
+        var addressNew = new Address("5th Street", "987", "Center", "New Jersey", "NY", "12345999");
 
-        var putRequest = new RestaurantDTO.PutRequest(
+        var putRequest = new UpdateRestaurantCommand(
                 "Holy Burger",
-                addressRequest,
+                addressNew,
                 "Fast Food",
                 "08:00-22:00",
                 ownerId
         );
         var updatedRestaurant = new Restaurant(restaurantId,
                 "Holy Burger",
-                addressDomain,
+                addressNew,
                 "Fast Food",
                 "08:00-22:00",
                 ownerId
@@ -84,12 +82,12 @@ class UpdateRestaurantUseCaseTest {
         assertEquals("08:00-22:00", result.getOperatingHours());
         assertEquals(ownerId, result.getOwnerId());
 
-        assertEquals(addressRequest.street(), result.getAddress().street());
-        assertEquals(addressRequest.number(), result.getAddress().number());
-        assertEquals(addressRequest.neighborhood(), result.getAddress().neighborhood());
-        assertEquals(addressRequest.city(), result.getAddress().city());
-        assertEquals(addressRequest.state(), result.getAddress().state());
-        assertEquals(addressRequest.zipCode(), result.getAddress().zipCode());
+        assertEquals(addressNew.street(), result.getAddress().street());
+        assertEquals(addressNew.number(), result.getAddress().number());
+        assertEquals(addressNew.neighborhood(), result.getAddress().neighborhood());
+        assertEquals(addressNew.city(), result.getAddress().city());
+        assertEquals(addressNew.state(), result.getAddress().state());
+        assertEquals(addressNew.zipCode(), result.getAddress().zipCode());
     }
 
     @Test
@@ -100,11 +98,11 @@ class UpdateRestaurantUseCaseTest {
         var invalidOwnerId = UUID.randomUUID();
         var restaurantId = UUID.randomUUID();
 
-        var addressRequest = new AddressDTO.Request("5th Street", "987", "Center", "New Jersey", "NY", "12345999");
+        var address = new Address("5th Street", "987", "Center", "New Jersey", "NY", "12345999");
 
-        var putRequest = new RestaurantDTO.PutRequest(
+        var putRequest = new UpdateRestaurantCommand(
                 "Holy Burger",
-                addressRequest,
+                address,
                 "Fast Food",
                 "08:00-22:00",
                 invalidOwnerId
@@ -131,11 +129,11 @@ class UpdateRestaurantUseCaseTest {
         var nonExistentRestaurantId = UUID.randomUUID();
         var ownerId = UUID.randomUUID();
 
-        var addressRequest = new AddressDTO.Request("5th Street", "987", "Center", "New Jersey", "NY", "12345999");
+        var address = new Address("5th Street", "987", "Center", "New Jersey", "NY", "12345999");
 
-        var putRequest = new RestaurantDTO.PutRequest(
+        var putRequest = new UpdateRestaurantCommand(
                 "Holy Burger",
-                addressRequest,
+                address,
                 "Fast Food",
                 "08:00-22:00",
                 ownerId

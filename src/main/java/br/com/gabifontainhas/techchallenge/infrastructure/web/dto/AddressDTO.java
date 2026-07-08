@@ -1,20 +1,27 @@
-package br.com.gabifontainhas.techchallenge.application.usecases.dto;
+package br.com.gabifontainhas.techchallenge.infrastructure.web.dto;
 
 import br.com.gabifontainhas.techchallenge.domain.valueobjects.Address;
+import jakarta.validation.constraints.NotBlank;
 
 public final class AddressDTO {
     public record Request(
 
+            @NotBlank
             String street,
 
+            @NotBlank
             String number,
 
+            @NotBlank
             String neighborhood,
 
+            @NotBlank
             String city,
 
+            @NotBlank
             String state,
 
+            @NotBlank
             String zipCode
     ) {
         public Address toDomain() {

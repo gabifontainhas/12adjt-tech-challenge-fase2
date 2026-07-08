@@ -1,9 +1,9 @@
 package br.com.gabifontainhas.techchallenge.application.usecases.customer;
 
-import br.com.gabifontainhas.techchallenge.application.gateway.CustomerRepository;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.CustomerDTO;
-import br.com.gabifontainhas.techchallenge.domain.entities.Customer;
 import br.com.gabifontainhas.techchallenge.application.exception.EmailAlreadyExistsException;
+import br.com.gabifontainhas.techchallenge.application.gateway.CustomerRepository;
+import br.com.gabifontainhas.techchallenge.application.usecases.dto.CreateCustomerCommand;
+import br.com.gabifontainhas.techchallenge.domain.entities.Customer;
 
 public class CreateCustomerUseCase {
     private final CustomerRepository customerRepository;
@@ -12,7 +12,7 @@ public class CreateCustomerUseCase {
         this.customerRepository = customerRepository;
     }
 
-    public Customer create(CustomerDTO.PostRequest request) {
+    public Customer create(CreateCustomerCommand request) {
         if (customerRepository.existsByEmail(request.email())) {
             throw new EmailAlreadyExistsException("E-mail already exists");
         }

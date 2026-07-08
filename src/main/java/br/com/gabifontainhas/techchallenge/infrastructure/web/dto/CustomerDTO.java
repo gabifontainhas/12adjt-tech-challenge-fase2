@@ -1,6 +1,9 @@
-package br.com.gabifontainhas.techchallenge.application.usecases.dto;
+package br.com.gabifontainhas.techchallenge.infrastructure.web.dto;
 
+import br.com.gabifontainhas.techchallenge.application.usecases.dto.CreateCustomerCommand;
+import br.com.gabifontainhas.techchallenge.application.usecases.dto.UpdateCustomerCommand;
 import br.com.gabifontainhas.techchallenge.domain.entities.Customer;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -9,17 +12,32 @@ import java.util.UUID;
 public final class CustomerDTO {
 
     public record PostRequest(
+            @NotBlank
             String email,
+
+            @NotBlank
             String name,
+
+            @NotBlank
             String phoneNumber
 
     ) {
+        public CreateCustomerCommand toCommand() {
+            return new CreateCustomerCommand(this.name, this.email, this.phoneNumber);
+        }
     }
 
     public record PutRequest(
+
+            @NotBlank
             String name,
+
+            @NotBlank
             String phoneNumber
     ) {
+        public UpdateCustomerCommand toCommand() {
+            return new UpdateCustomerCommand(this.name, this.phoneNumber);
+        }
     }
 
     public record Response(

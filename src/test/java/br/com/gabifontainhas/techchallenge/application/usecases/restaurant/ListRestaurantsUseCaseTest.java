@@ -2,8 +2,8 @@ package br.com.gabifontainhas.techchallenge.application.usecases.restaurant;
 
 import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.AddressDTO;
 import br.com.gabifontainhas.techchallenge.domain.entities.Restaurant;
+import br.com.gabifontainhas.techchallenge.domain.valueobjects.Address;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,12 +35,11 @@ class ListRestaurantsUseCaseTest {
         var ownerId1 = UUID.randomUUID();
         var ownerId2 = UUID.randomUUID();
 
-        var addressRequest = new AddressDTO.Request("Main Street", "123", "Downtown", "New York", "NY", "12345000");
-        var addressDomain = addressRequest.toDomain();
+        var address = new Address("Main Street", "123", "Downtown", "New York", "NY", "12345000");
 
         var restaurant1 = new Restaurant(
                 "Holy Burger",
-                addressDomain,
+                address,
                 "Fast Food",
                 "08:00-22:00",
                 ownerId1
@@ -48,7 +47,7 @@ class ListRestaurantsUseCaseTest {
 
         var restaurant2 = new Restaurant(
                 "Mario Pizza",
-                addressDomain,
+                address,
                 "Italian Food",
                 "18:00-23:00",
                 ownerId2
@@ -75,19 +74,19 @@ class ListRestaurantsUseCaseTest {
         assertEquals(ownerId2, result.get(1).getOwnerId());
         assertNotNull(result.get(1).getId());
 
-        assertEquals(addressRequest.street(), result.getFirst().getAddress().street());
-        assertEquals(addressRequest.number(), result.getFirst().getAddress().number());
-        assertEquals(addressRequest.neighborhood(), result.getFirst().getAddress().neighborhood());
-        assertEquals(addressRequest.city(), result.getFirst().getAddress().city());
-        assertEquals(addressRequest.state(), result.getFirst().getAddress().state());
-        assertEquals(addressRequest.zipCode(), result.getFirst().getAddress().zipCode());
+        assertEquals(address.street(), result.getFirst().getAddress().street());
+        assertEquals(address.number(), result.getFirst().getAddress().number());
+        assertEquals(address.neighborhood(), result.getFirst().getAddress().neighborhood());
+        assertEquals(address.city(), result.getFirst().getAddress().city());
+        assertEquals(address.state(), result.getFirst().getAddress().state());
+        assertEquals(address.zipCode(), result.getFirst().getAddress().zipCode());
 
-        assertEquals(addressRequest.street(), result.get(1).getAddress().street());
-        assertEquals(addressRequest.number(), result.get(1).getAddress().number());
-        assertEquals(addressRequest.neighborhood(), result.get(1).getAddress().neighborhood());
-        assertEquals(addressRequest.city(), result.get(1).getAddress().city());
-        assertEquals(addressRequest.state(), result.get(1).getAddress().state());
-        assertEquals(addressRequest.zipCode(), result.get(1).getAddress().zipCode());
+        assertEquals(address.street(), result.get(1).getAddress().street());
+        assertEquals(address.number(), result.get(1).getAddress().number());
+        assertEquals(address.neighborhood(), result.get(1).getAddress().neighborhood());
+        assertEquals(address.city(), result.get(1).getAddress().city());
+        assertEquals(address.state(), result.get(1).getAddress().state());
+        assertEquals(address.zipCode(), result.get(1).getAddress().zipCode());
     }
 
 
@@ -113,12 +112,11 @@ class ListRestaurantsUseCaseTest {
         var restaurantId = UUID.randomUUID();
         var ownerId = UUID.randomUUID();
 
-        var addressRequest = new AddressDTO.Request("Main Street", "123", "Downtown", "New York", "NY", "12345000");
-        var addressDomain = addressRequest.toDomain();
+        var address = new Address("Main Street", "123", "Downtown", "New York", "NY", "12345000");
 
         var expectedRestaurant = new Restaurant(restaurantId,
                 "Holy Burger",
-                addressDomain,
+                address,
                 "Fast Food",
                 "08:00-22:00",
                 ownerId

@@ -1,10 +1,12 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web;
 
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.MenuItemDTO;
+
 import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.CreateMenuItemUseCase;
 import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.DeleteMenuItemUseCase;
 import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.ListMenuItemsUseCase;
 import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.UpdateMenuItemUseCase;
+import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.MenuItemDTO;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,8 +31,8 @@ public class MenuItemController {
     }
 
     @PostMapping
-    public ResponseEntity<MenuItemDTO.Response> create(@RequestBody MenuItemDTO.PostRequest dto) {
-        var menuItem = this.createMenuItemUseCase.create(dto);
+    public ResponseEntity<MenuItemDTO.Response> create(@RequestBody @Valid MenuItemDTO.PostRequest dto) {
+        var menuItem = this.createMenuItemUseCase.create(dto.toCommand());
         return ResponseEntity.status(HttpStatus.CREATED).body(new MenuItemDTO.Response(menuItem));
     }
 
@@ -66,8 +68,8 @@ public class MenuItemController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MenuItemDTO.Response> update(@PathVariable UUID id, @RequestBody MenuItemDTO.PutRequest dto) {
-        var menuItem = this.updateMenuItemUseCase.update(dto, id);
+    public ResponseEntity<MenuItemDTO.Response> update(@PathVariable UUID id, @RequestBody @Valid MenuItemDTO.PutRequest dto) {
+        var menuItem = this.updateMenuItemUseCase.update(dto.toCommand(), id);
         return ResponseEntity.ok(new MenuItemDTO.Response(menuItem));
     }
 

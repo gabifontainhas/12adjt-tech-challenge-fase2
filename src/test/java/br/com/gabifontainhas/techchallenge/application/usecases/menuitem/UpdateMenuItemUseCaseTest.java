@@ -2,7 +2,7 @@ package br.com.gabifontainhas.techchallenge.application.usecases.menuitem;
 
 import br.com.gabifontainhas.techchallenge.application.exception.MenuItemNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.MenuItemRepository;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.MenuItemDTO;
+import br.com.gabifontainhas.techchallenge.application.usecases.dto.UpdateMenuItemCommand;
 import br.com.gabifontainhas.techchallenge.domain.entities.MenuItem;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,7 +36,7 @@ class UpdateMenuItemUseCaseTest {
         var menuItemId = UUID.randomUUID();
         var restaurantId = UUID.randomUUID();
 
-        var existingMenuItem =  new MenuItem(
+        var existingMenuItem = new MenuItem(
                 menuItemId,
                 "X-Burger",
                 "Delicious burger with cheese",
@@ -45,7 +45,7 @@ class UpdateMenuItemUseCaseTest {
                 "images/xburger.png",
                 restaurantId
         );
-        var putRequest = new MenuItemDTO.PutRequest(
+        var putRequest = new UpdateMenuItemCommand(
                 "Chocolate Milkshake",
                 "Delicious milkshake with chocolate syrup",
                 BigDecimal.valueOf(14.90),
@@ -53,7 +53,7 @@ class UpdateMenuItemUseCaseTest {
                 "images/milkshake.png"
         );
 
-        var updatedMenuItem =  new MenuItem(
+        var updatedMenuItem = new MenuItem(
                 menuItemId,
                 "Chocolate Milkshake",
                 "Delicious milkshake with chocolate syrup",
@@ -86,7 +86,7 @@ class UpdateMenuItemUseCaseTest {
         // Arrange
 
         var nonExistentId = UUID.randomUUID();
-        var putRequest = new MenuItemDTO.PutRequest(
+        var putRequest = new UpdateMenuItemCommand(
                 "X-Burger",
                 "Delicious burger with cheese",
                 BigDecimal.valueOf(25.90),

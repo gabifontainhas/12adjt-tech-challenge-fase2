@@ -1,10 +1,11 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web;
 
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.RestaurantDTO;
 import br.com.gabifontainhas.techchallenge.application.usecases.restaurant.CreateRestaurantUseCase;
 import br.com.gabifontainhas.techchallenge.application.usecases.restaurant.DeleteRestaurantUseCase;
 import br.com.gabifontainhas.techchallenge.application.usecases.restaurant.ListRestaurantsUseCase;
 import br.com.gabifontainhas.techchallenge.application.usecases.restaurant.UpdateRestaurantUseCase;
+import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.RestaurantDTO;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +35,8 @@ public class RestaurantController {
     }
 
     @PostMapping
-    public ResponseEntity<RestaurantDTO.Response> create(@RequestBody RestaurantDTO.PostRequest dto) {
-        var restaurant = this.createRestaurantUseCase.create(dto);
+    public ResponseEntity<RestaurantDTO.Response> create(@RequestBody @Valid RestaurantDTO.PostRequest dto) {
+        var restaurant = this.createRestaurantUseCase.create(dto.toCommand());
         return ResponseEntity.status(HttpStatus.CREATED).body(new RestaurantDTO.Response(restaurant));
     }
 
@@ -62,8 +63,8 @@ public class RestaurantController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<RestaurantDTO.Response> update(@PathVariable UUID id, @RequestBody RestaurantDTO.PutRequest dto) {
-        var restaurant = this.updateRestaurantUseCase.update(dto, id);
+    public ResponseEntity<RestaurantDTO.Response> update(@PathVariable UUID id, @RequestBody  @Valid RestaurantDTO.PutRequest dto) {
+        var restaurant = this.updateRestaurantUseCase.update(dto.toCommand(), id);
         return ResponseEntity.ok(new RestaurantDTO.Response(restaurant));
     }
 

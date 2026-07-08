@@ -1,7 +1,12 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web;
 
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.OwnerDTO;
-import br.com.gabifontainhas.techchallenge.application.usecases.owner.*;
+
+import br.com.gabifontainhas.techchallenge.application.usecases.owner.CreateOwnerUseCase;
+import br.com.gabifontainhas.techchallenge.application.usecases.owner.DeleteOwnerUseCase;
+import br.com.gabifontainhas.techchallenge.application.usecases.owner.ListOwnersUseCase;
+import br.com.gabifontainhas.techchallenge.application.usecases.owner.UpdateOwnerUseCase;
+import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.OwnerDTO;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,8 +36,8 @@ public class OwnerController {
     }
 
     @PostMapping
-    public ResponseEntity<OwnerDTO.Response> create(@RequestBody OwnerDTO.PostRequest dto) {
-        var owner = this.createOwnerUseCase.create(dto);
+    public ResponseEntity<OwnerDTO.Response> create(@RequestBody @Valid OwnerDTO.PostRequest dto) {
+        var owner = this.createOwnerUseCase.create(dto.toCommand());
         return ResponseEntity.status(HttpStatus.CREATED).body(new OwnerDTO.Response(owner));
     }
 
@@ -59,8 +64,8 @@ public class OwnerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OwnerDTO.Response> update(@PathVariable UUID id, @RequestBody OwnerDTO.PutRequest dto) {
-        var owner = this.updateOwnerUseCase.update(dto, id);
+    public ResponseEntity<OwnerDTO.Response> update(@PathVariable UUID id, @RequestBody @Valid OwnerDTO.PutRequest dto) {
+        var owner = this.updateOwnerUseCase.update(dto.toCommand(), id);
         return ResponseEntity.ok(new OwnerDTO.Response(owner));
     }
 }

@@ -2,7 +2,7 @@ package br.com.gabifontainhas.techchallenge.application.usecases.owner;
 
 import br.com.gabifontainhas.techchallenge.application.exception.EmailAlreadyExistsException;
 import br.com.gabifontainhas.techchallenge.application.gateway.OwnerRepository;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.OwnerDTO;
+import br.com.gabifontainhas.techchallenge.application.usecases.dto.CreateOwnerCommand;
 import br.com.gabifontainhas.techchallenge.domain.entities.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ public class CreateOwnerUseCaseTest {
     @DisplayName("Should create an owner successfully when request is valid and email does not exist")
     void shouldCreateOwnerSuccessfully() {
         // Arrange
-        var request = new OwnerDTO.PostRequest("michael.scott@dundermifflin.com", "Michael Scott", "11999999999");
+        var request = new CreateOwnerCommand("michael.scott@dundermifflin.com", "Michael Scott", "11999999999");
         var savedOwner = new Owner(
                 request.email(),
                 request.name(),
@@ -53,7 +53,7 @@ public class CreateOwnerUseCaseTest {
     @DisplayName("Should throw EmailAlreadyExistsException when trying to register an email already in use")
     void shouldThrowExceptionWhenEmailAlreadyExists() {
         // Arrange
-        var request = new OwnerDTO.PostRequest("michael.scott@dundermifflin.com", "Michael Scott", "11999999999");
+        var request = new CreateOwnerCommand("michael.scott@dundermifflin.com", "Michael Scott", "11999999999");
 
         when(ownerRepository.existsByEmail(request.email())).thenReturn(true);
 

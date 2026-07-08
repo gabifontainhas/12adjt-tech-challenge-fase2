@@ -2,7 +2,7 @@ package br.com.gabifontainhas.techchallenge.application.usecases.customer;
 
 import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.CustomerRepository;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.CustomerDTO;
+import br.com.gabifontainhas.techchallenge.application.usecases.dto.UpdateCustomerCommand;
 import br.com.gabifontainhas.techchallenge.domain.entities.Customer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,7 +35,7 @@ public class UpdateCustomerUseCaseTest {
         var customerId = UUID.randomUUID();
         var existingCustomer = new Customer(customerId, "jim.halpert@dundermifflin.com", "Jim Halpert", LocalDate.now(),"11999999999");
 
-        var putRequest = new CustomerDTO.PutRequest("James Halpert", "11988888888");
+        var putRequest = new UpdateCustomerCommand("James Halpert", "11988888888");
 
         var updatedCustomer = new Customer(customerId, "jim.halpert@dundermifflin.com", "James Halpert", LocalDate.now(),"11988888888");
 
@@ -59,7 +59,7 @@ public class UpdateCustomerUseCaseTest {
     void shouldThrowExceptionWhenCustomerDoesNotExist() {
         // Arrange
         var nonExistentId = UUID.randomUUID();
-        var putRequest = new CustomerDTO.PutRequest("James Halpert", "11988888888");
+        var putRequest = new UpdateCustomerCommand("James Halpert", "11988888888");
 
         when(customerRepository.findById(nonExistentId)).thenReturn(Optional.empty());
 

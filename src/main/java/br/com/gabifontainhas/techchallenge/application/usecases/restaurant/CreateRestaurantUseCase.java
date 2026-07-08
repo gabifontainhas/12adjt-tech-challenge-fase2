@@ -1,11 +1,11 @@
 package br.com.gabifontainhas.techchallenge.application.usecases.restaurant;
 
-import br.com.gabifontainhas.techchallenge.application.gateway.OwnerRepository;
-import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.RestaurantDTO;
-import br.com.gabifontainhas.techchallenge.domain.entities.Restaurant;
 import br.com.gabifontainhas.techchallenge.application.exception.RestaurantAlreadyExistsException;
 import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
+import br.com.gabifontainhas.techchallenge.application.gateway.OwnerRepository;
+import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
+import br.com.gabifontainhas.techchallenge.application.usecases.dto.CreateRestaurantCommand;
+import br.com.gabifontainhas.techchallenge.domain.entities.Restaurant;
 
 public class CreateRestaurantUseCase {
     private final RestaurantRepository restaurantRepository;
@@ -16,7 +16,7 @@ public class CreateRestaurantUseCase {
         this.ownerRepository = ownerRepository;
     }
 
-    public Restaurant create(RestaurantDTO.PostRequest request) {
+    public Restaurant create(CreateRestaurantCommand request) {
         if (restaurantRepository.existsByName(request.name())) {
             throw new RestaurantAlreadyExistsException("Restaurant already exists");
         }
@@ -25,8 +25,7 @@ public class CreateRestaurantUseCase {
             throw new UserNotFoundException("Could not create restaurant: The provided Owner does not exist");
         }
 
-        var addressDomain = request.address().toDomain();
-        var restaurant = new Restaurant(request.name(), addressDomain, request.cuisineType(), request.operatingHours(), request.ownerId());
+        var restaurant = new Restaurant(request.name(), request.address(), request.cuisineType(), request.operatingHours(), request.ownerId());
         return restaurantRepository.save(restaurant);
     }
 }

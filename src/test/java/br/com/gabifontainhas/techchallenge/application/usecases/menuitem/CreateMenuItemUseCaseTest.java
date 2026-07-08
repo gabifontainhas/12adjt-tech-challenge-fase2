@@ -4,7 +4,7 @@ import br.com.gabifontainhas.techchallenge.application.exception.MenuItemAlready
 import br.com.gabifontainhas.techchallenge.application.exception.RestaurantNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.MenuItemRepository;
 import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.MenuItemDTO;
+import br.com.gabifontainhas.techchallenge.application.usecases.dto.CreateMenuItemCommand;
 import br.com.gabifontainhas.techchallenge.domain.entities.MenuItem;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,7 +38,7 @@ class CreateMenuItemUseCaseTest {
 
         // Arrange
         var restaurantId = UUID.randomUUID();
-        var request = new MenuItemDTO.PostRequest(
+        var request = new CreateMenuItemCommand(
                 "X-Burger",
                 "Delicious burger with cheese",
                 BigDecimal.valueOf(25.90),
@@ -81,7 +81,7 @@ class CreateMenuItemUseCaseTest {
 
         // Arrange
         var restaurantId = UUID.randomUUID();
-        var request = new MenuItemDTO.PostRequest(
+        var request = new CreateMenuItemCommand(
                 "X-Burger",
                 "Delicious burger with cheese",
                 BigDecimal.valueOf(25.90),
@@ -108,7 +108,7 @@ class CreateMenuItemUseCaseTest {
     void shouldThrowExceptionWhenMenuItemAlreadyExists() {
         // Arrange
         var restaurantId = UUID.randomUUID();
-        var request = new MenuItemDTO.PostRequest(
+        var request = new CreateMenuItemCommand(
                 "X-Burger",
                 "Delicious burger with cheese",
                 BigDecimal.valueOf(25.90),

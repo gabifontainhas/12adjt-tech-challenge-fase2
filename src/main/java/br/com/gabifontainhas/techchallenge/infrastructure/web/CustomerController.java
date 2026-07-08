@@ -4,7 +4,9 @@ import br.com.gabifontainhas.techchallenge.application.usecases.customer.CreateC
 import br.com.gabifontainhas.techchallenge.application.usecases.customer.DeleteCustomerUseCase;
 import br.com.gabifontainhas.techchallenge.application.usecases.customer.ListCustomersUseCase;
 import br.com.gabifontainhas.techchallenge.application.usecases.customer.UpdateCustomerUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.CustomerDTO;
+
+import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.CustomerDTO;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +36,8 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<CustomerDTO.Response> createCustomer(@RequestBody CustomerDTO.PostRequest dto) {
-        var customer = this.createCustomerUseCase.create(dto);
+    public ResponseEntity<CustomerDTO.Response> createCustomer(@RequestBody @Valid CustomerDTO.PostRequest dto) {
+        var customer = this.createCustomerUseCase.create(dto.toCommand());
         return ResponseEntity.status(HttpStatus.CREATED).body(new CustomerDTO.Response(customer));
     }
 
@@ -62,8 +64,8 @@ public class CustomerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CustomerDTO.Response> update(@PathVariable UUID id, @RequestBody CustomerDTO.PutRequest dto) {
-        var customer = this.updateCustomerUseCase.update(dto, id);
+    public ResponseEntity<CustomerDTO.Response> update(@PathVariable UUID id, @RequestBody @Valid CustomerDTO.PutRequest dto) {
+        var customer = this.updateCustomerUseCase.update(dto.toCommand(), id);
         return ResponseEntity.ok(new CustomerDTO.Response(customer));
     }
 }
