@@ -9,13 +9,13 @@ public final class OwnerDTO {
     public record PostRequest(
             String email,
             String name,
-            String restaurantName
+            String businessPhone
     ) {
     }
 
     public record PutRequest(
             String name,
-            String restaurantName
+            String businessPhone
     ) {
     }
 
@@ -24,10 +24,10 @@ public final class OwnerDTO {
             String email,
             String name,
             LocalDate lastUpdate,
-            String restaurantName
+            String businessPhone
     ) {
         public Response(Owner o) {
-            this(o.getId(), o.getEmail(), o.getName(), o.getLastUpdate(), o.getRestaurantName());
+            this(o.getId(), o.getEmail(), o.getName(), o.getLastUpdate(), o.getBusinessPhone());
         }
     }
 

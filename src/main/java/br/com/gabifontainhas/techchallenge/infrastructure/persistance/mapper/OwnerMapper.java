@@ -12,7 +12,7 @@ public class OwnerMapper {
                 domain.getId(),
                 domain.getEmail(),
                 domain.getName(),
-                domain.getRestaurantName(),
+                domain.getBusinessPhone(),
                 domain.getLastUpdate()
         );
     }

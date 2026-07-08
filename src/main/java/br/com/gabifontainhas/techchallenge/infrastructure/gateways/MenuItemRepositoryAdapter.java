@@ -1,12 +1,12 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.gateways;
 
-import br.com.gabifontainhas.techchallenge.application.exception.MenuItemNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.MenuItemRepository;
 import br.com.gabifontainhas.techchallenge.domain.entities.MenuItem;
 import br.com.gabifontainhas.techchallenge.infrastructure.persistance.MenuItemJpaRepository;
 import br.com.gabifontainhas.techchallenge.infrastructure.persistance.mapper.MenuItemMapper;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -30,10 +30,10 @@ public class MenuItemRepositoryAdapter implements MenuItemRepository {
     }
 
     @Override
-    public MenuItem findById(UUID id) {
-        var menuItemEntity = menuItemJpaRepository.findById(id).orElseThrow(() -> new MenuItemNotFoundException("Menu Item not found"));
-        return MenuItemMapper.toDomain(menuItemEntity);
+    public Optional<MenuItem> findById(UUID id) {
+        return menuItemJpaRepository.findById(id).map(MenuItemMapper::toDomain);
     }
+    
     @Override
     public void delete(UUID id) {
         this.menuItemJpaRepository.deleteById(id);

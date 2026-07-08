@@ -2,11 +2,11 @@ package br.com.gabifontainhas.techchallenge.infrastructure.gateways;
 
 import br.com.gabifontainhas.techchallenge.application.gateway.CustomerRepository;
 import br.com.gabifontainhas.techchallenge.domain.entities.Customer;
-import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
 import br.com.gabifontainhas.techchallenge.infrastructure.persistance.CustomerJpaRepository;
 import br.com.gabifontainhas.techchallenge.infrastructure.persistance.mapper.CustomerMapper;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -30,9 +30,8 @@ public class CustomerRepositoryAdapter implements CustomerRepository {
     }
 
     @Override
-    public Customer findById(UUID id) {
-        var customerEntity = customerJpaRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Customer not found"));
-        return CustomerMapper.toDomain(customerEntity);
+    public Optional<Customer> findById(UUID id) {
+        return customerJpaRepository.findById(id).map(CustomerMapper::toDomain);
     }
 
     @Override

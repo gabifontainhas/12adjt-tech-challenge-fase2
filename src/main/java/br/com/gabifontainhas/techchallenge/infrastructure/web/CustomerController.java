@@ -2,7 +2,7 @@ package br.com.gabifontainhas.techchallenge.infrastructure.web;
 
 import br.com.gabifontainhas.techchallenge.application.usecases.customer.CreateCustomerUseCase;
 import br.com.gabifontainhas.techchallenge.application.usecases.customer.DeleteCustomerUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.customer.ListCustomerUseCase;
+import br.com.gabifontainhas.techchallenge.application.usecases.customer.ListCustomersUseCase;
 import br.com.gabifontainhas.techchallenge.application.usecases.customer.UpdateCustomerUseCase;
 import br.com.gabifontainhas.techchallenge.application.usecases.dto.CustomerDTO;
 import org.springframework.http.HttpStatus;
@@ -17,13 +17,13 @@ import java.util.stream.Collectors;
 @RequestMapping("/v1/customers")
 public class CustomerController {
     private final CreateCustomerUseCase createCustomerUseCase;
-    private final ListCustomerUseCase listCustomersUseCase;
+    private final ListCustomersUseCase listCustomersUseCase;
     private final DeleteCustomerUseCase deleteCustomerUseCase;
     private final UpdateCustomerUseCase updateCustomerUseCase;
 
     public CustomerController(
             CreateCustomerUseCase createCustomerUseCase,
-            ListCustomerUseCase listCustomersUseCase,
+            ListCustomersUseCase listCustomersUseCase,
             DeleteCustomerUseCase deleteCustomerUseCase,
             UpdateCustomerUseCase updateCustomerUseCase
     ) {

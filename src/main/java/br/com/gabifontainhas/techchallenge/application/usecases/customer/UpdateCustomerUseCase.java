@@ -1,5 +1,6 @@
 package br.com.gabifontainhas.techchallenge.application.usecases.customer;
 
+import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.CustomerRepository;
 import br.com.gabifontainhas.techchallenge.application.usecases.dto.CustomerDTO;
 import br.com.gabifontainhas.techchallenge.domain.entities.Customer;
@@ -14,7 +15,7 @@ public class UpdateCustomerUseCase {
     }
 
     public Customer update(CustomerDTO.PutRequest request, UUID id) {
-        var customer = customerRepository.findById(id);
+        var customer = customerRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Customer not found"));
         customer.update(request.name(), request.phoneNumber());
         return customerRepository.save(customer);
     }

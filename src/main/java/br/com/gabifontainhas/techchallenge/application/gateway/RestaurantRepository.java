@@ -3,6 +3,7 @@ package br.com.gabifontainhas.techchallenge.application.gateway;
 import br.com.gabifontainhas.techchallenge.domain.entities.Restaurant;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface RestaurantRepository {
@@ -10,7 +11,7 @@ public interface RestaurantRepository {
 
     List<Restaurant> findAll();
 
-    Restaurant findById(UUID uuid);
+    Optional<Restaurant> findById(UUID uuid);
 
     void delete(UUID id);
 

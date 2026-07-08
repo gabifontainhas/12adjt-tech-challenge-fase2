@@ -2,11 +2,11 @@ package br.com.gabifontainhas.techchallenge.infrastructure.gateways;
 
 import br.com.gabifontainhas.techchallenge.application.gateway.OwnerRepository;
 import br.com.gabifontainhas.techchallenge.domain.entities.Owner;
-import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
 import br.com.gabifontainhas.techchallenge.infrastructure.persistance.OwnerJpaRepository;
 import br.com.gabifontainhas.techchallenge.infrastructure.persistance.mapper.OwnerMapper;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -36,9 +36,8 @@ public class OwnerRepositoryAdapter implements OwnerRepository {
     }
 
     @Override
-    public Owner findById(UUID id) {
-        var ownerEntity = ownerJpaRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Owner not found"));
-        return OwnerMapper.toDomain(ownerEntity);
+    public Optional<Owner> findById(UUID id) {
+        return ownerJpaRepository.findById(id).map(OwnerMapper::toDomain);
     }
 
     @Override

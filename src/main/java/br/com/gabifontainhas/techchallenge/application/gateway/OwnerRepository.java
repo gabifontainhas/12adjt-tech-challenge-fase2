@@ -1,9 +1,9 @@
 package br.com.gabifontainhas.techchallenge.application.gateway;
 
-import br.com.gabifontainhas.techchallenge.domain.entities.Customer;
 import br.com.gabifontainhas.techchallenge.domain.entities.Owner;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface OwnerRepository {
@@ -13,7 +13,7 @@ public interface OwnerRepository {
 
     List<Owner> findAll();
 
-    Owner findById(UUID uuid);
+    Optional<Owner> findById(UUID uuid);
 
     void delete(UUID id);
 

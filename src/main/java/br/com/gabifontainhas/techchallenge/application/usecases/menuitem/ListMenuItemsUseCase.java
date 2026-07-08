@@ -1,5 +1,6 @@
 package br.com.gabifontainhas.techchallenge.application.usecases.menuitem;
 
+import br.com.gabifontainhas.techchallenge.application.exception.MenuItemNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.exception.RestaurantNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.MenuItemRepository;
 import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
@@ -29,8 +30,7 @@ public class ListMenuItemsUseCase {
     }
 
     public MenuItem getMenuItemById(UUID uuid) {
-        return menuItemRepository.findById(uuid);
+        return menuItemRepository.findById(uuid).orElseThrow(() -> new MenuItemNotFoundException("Menu item not found"));
     }
-
 
 }

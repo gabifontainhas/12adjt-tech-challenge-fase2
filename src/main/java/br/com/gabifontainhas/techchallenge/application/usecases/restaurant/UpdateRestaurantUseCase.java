@@ -1,5 +1,6 @@
 package br.com.gabifontainhas.techchallenge.application.usecases.restaurant;
 
+import br.com.gabifontainhas.techchallenge.application.exception.RestaurantNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.OwnerRepository;
 import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
 import br.com.gabifontainhas.techchallenge.application.usecases.dto.RestaurantDTO;
@@ -23,7 +24,7 @@ public class UpdateRestaurantUseCase {
             throw new UserNotFoundException("Could not update restaurant: The provided Owner does not exist");
         }
 
-        var restaurant = restaurantRepository.findById(id);
+        var restaurant = restaurantRepository.findById(id).orElseThrow(() -> new RestaurantNotFoundException("Restaurant not found"));
         var address = request.address().toDomain();
         restaurant.update(request.name(), address, request.cuisineType(), request.operatingHours(), request.ownerId());
         return restaurantRepository.save(restaurant);

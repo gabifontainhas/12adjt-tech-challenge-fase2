@@ -1,5 +1,6 @@
 package br.com.gabifontainhas.techchallenge.application.usecases.restaurant;
 
+import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
 import br.com.gabifontainhas.techchallenge.domain.entities.Restaurant;
 
@@ -18,6 +19,6 @@ public class ListRestaurantsUseCase {
     }
 
     public Restaurant getRestaurantById(UUID uuid) {
-        return restaurantRepository.findById(uuid);
+        return restaurantRepository.findById(uuid).orElseThrow(() -> new UserNotFoundException("Restaurant not found"));
     }
 }

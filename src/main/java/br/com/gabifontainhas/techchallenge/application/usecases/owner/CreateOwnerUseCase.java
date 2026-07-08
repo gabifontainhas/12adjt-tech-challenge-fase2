@@ -16,7 +16,7 @@ public class CreateOwnerUseCase {
         if (ownerRepository.existsByEmail(request.email())) {
             throw new EmailAlreadyExistsException("E-mail already exists");
         }
-        var owner = new Owner(request.email(), request.name(), request.restaurantName());
+        var owner = new Owner(request.email(), request.name(), request.businessPhone());
         return ownerRepository.save(owner);
     }
 }

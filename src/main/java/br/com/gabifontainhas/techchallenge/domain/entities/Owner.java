@@ -7,20 +7,20 @@ import java.util.UUID;
 
 @Getter
 public class Owner extends User {
-    private String restaurantName;
+    private String businessPhone;
 
-    public Owner(String email, String name, String restaurantName) {
+    public Owner(String email, String name, String businessPhone) {
         super(name, email);
-        this.restaurantName = restaurantName;
+        this.businessPhone = businessPhone;
     }
 
-    public Owner(UUID id, String email, String name, LocalDate lastUpdate, String restaurantName) {
+    public Owner(UUID id, String email, String name, LocalDate lastUpdate, String businessPhone) {
         super(id, email, name, lastUpdate);
-        this.restaurantName = restaurantName;
+        this.businessPhone = businessPhone;
     }
 
     public void update(String name, String restaurantName) {
         super.update(name);
-        this.restaurantName = restaurantName;
+        this.businessPhone = restaurantName;
     }
 }

@@ -3,7 +3,7 @@ package br.com.gabifontainhas.techchallenge.config;
 import br.com.gabifontainhas.techchallenge.application.gateway.CustomerRepository;
 import br.com.gabifontainhas.techchallenge.application.usecases.customer.CreateCustomerUseCase;
 import br.com.gabifontainhas.techchallenge.application.usecases.customer.DeleteCustomerUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.customer.ListCustomerUseCase;
+import br.com.gabifontainhas.techchallenge.application.usecases.customer.ListCustomersUseCase;
 import br.com.gabifontainhas.techchallenge.application.usecases.customer.UpdateCustomerUseCase;
 import br.com.gabifontainhas.techchallenge.infrastructure.gateways.CustomerRepositoryAdapter;
 import br.com.gabifontainhas.techchallenge.infrastructure.persistance.CustomerJpaRepository;
@@ -18,8 +18,8 @@ public class CustomerConfig {
     }
 
     @Bean
-    public ListCustomerUseCase listCustomerUseCase(CustomerRepository customerRepository) {
-        return new ListCustomerUseCase(customerRepository);
+    public ListCustomersUseCase listCustomerUseCase(CustomerRepository customerRepository) {
+        return new ListCustomersUseCase(customerRepository);
     }
 
     @Bean
