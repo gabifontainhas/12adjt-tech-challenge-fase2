@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class CustomerTest {
 
     @Test
-    @DisplayName("Should instantiate customer correctly using the convenience domain constructor")
-    void shouldCreateCustomerWithConvenienceConstructor() {
+    @DisplayName("Should instantiate customer correctly using the creation constructor")
+    void shouldCreateCustomerWithCreationConstructor()  {
         // Arrange & Act
         var customer = new Customer("jim.halpert@dundermifflin.com","Jim Halpert", "11999999999");
 
@@ -26,11 +26,11 @@ class CustomerTest {
     }
 
     @Test
-    @DisplayName("Should instantiate customer correctly using the constructor with all arguments")
-    void shouldCreateCustomerWithConstructorWithAllArguments() {
+    @DisplayName("Should instantiate customer correctly using the reconstruction constructor")
+    void shouldCreateCustomerWithReconstructionConstructor() {
         // Arrange & Act
         var customerId = UUID.randomUUID();
-        var lastUpdate = LocalDate.now();
+        var lastUpdate = LocalDate.now().minusDays(10);
         var customer = new Customer(customerId, "jim.halpert@dundermifflin.com","Jim Halpert", lastUpdate,"11999999999");
 
         // Assert
