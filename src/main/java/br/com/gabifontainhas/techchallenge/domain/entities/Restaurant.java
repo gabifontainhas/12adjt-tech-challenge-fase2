@@ -1,13 +1,11 @@
 package br.com.gabifontainhas.techchallenge.domain.entities;
 
 import br.com.gabifontainhas.techchallenge.domain.valueobjects.Address;
-import lombok.Getter;
 
 import java.util.UUID;
 
-@Getter
 public class Restaurant {
-    private UUID id;
+    private final UUID id;
     private String name;
     private Address address;
     private String cuisineType;
@@ -38,5 +36,29 @@ public class Restaurant {
         this.cuisineType = cuisineType;
         this.operatingHours = operatingHours;
         this.ownerId = ownerId;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public String getCuisineType() {
+        return cuisineType;
+    }
+
+    public String getOperatingHours() {
+        return operatingHours;
+    }
+
+    public UUID getOwnerId() {
+        return ownerId;
     }
 }

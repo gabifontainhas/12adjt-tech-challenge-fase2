@@ -1,6 +1,7 @@
 package br.com.gabifontainhas.techchallenge.application.usecases.restaurant;
 
 import br.com.gabifontainhas.techchallenge.application.exception.RestaurantAlreadyExistsException;
+import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.OwnerRepository;
 import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
 import br.com.gabifontainhas.techchallenge.application.usecases.dto.CreateRestaurantCommand;
@@ -105,6 +106,34 @@ class CreateRestaurantUseCaseTest {
         );
 
         assertEquals("Restaurant already exists", exception.getMessage());
+
+        verify(restaurantRepository, never()).save(any(Restaurant.class));
+    }
+
+    @Test
+    @DisplayName("Should throw IllegalArgumentException when the provided owner does not exist")
+    void shouldThrowExceptionWhenOwnerDoesNotExist() {
+        // Arrange
+        var ownerId = UUID.randomUUID();
+        var address = new Address("Main Street", "123", "Downtown", "New York", "NY", "12345000");
+
+        var request = new CreateRestaurantCommand(
+                "Holy Burger",
+                address,
+                "Fast Food",
+                "08:00-22:00",
+                ownerId
+        );
+
+        when(ownerRepository.existsById(ownerId)).thenReturn(false);
+
+        // Act & Assert
+        var exception = assertThrows(
+                UserNotFoundException.class,
+                () -> createRestaurantUseCase.create(request)
+        );
+
+        assertEquals("Could not create restaurant: The provided Owner does not exist", exception.getMessage());
 
         verify(restaurantRepository, never()).save(any(Restaurant.class));
     }

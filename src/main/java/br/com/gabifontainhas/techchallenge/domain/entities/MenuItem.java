@@ -1,11 +1,8 @@
 package br.com.gabifontainhas.techchallenge.domain.entities;
 
-import lombok.Getter;
-
 import java.math.BigDecimal;
 import java.util.UUID;
 
-@Getter
 public class MenuItem {
     private final UUID id;
     private String name;
@@ -41,5 +38,33 @@ public class MenuItem {
         this.price = price;
         this.dineInOnly = dineInOnly;
         this.imagePath = imagePath;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public boolean isDineInOnly() {
+        return dineInOnly;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public UUID getRestaurantId() {
+        return restaurantId;
     }
 }

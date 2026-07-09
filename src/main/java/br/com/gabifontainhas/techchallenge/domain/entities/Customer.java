@@ -1,11 +1,9 @@
 package br.com.gabifontainhas.techchallenge.domain.entities;
 
-import lombok.Getter;
-
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Getter
+
 public class Customer extends User {
     private String phoneNumber;
 
@@ -22,5 +20,9 @@ public class Customer extends User {
     public void update(String name, String phoneNumber) {
         super.update(name);
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 }

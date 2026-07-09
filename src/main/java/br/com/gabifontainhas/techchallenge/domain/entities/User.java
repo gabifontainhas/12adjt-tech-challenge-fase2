@@ -1,13 +1,8 @@
 package br.com.gabifontainhas.techchallenge.domain.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Getter
-@AllArgsConstructor
 public abstract class User {
     private final UUID id;
     private String email;
@@ -19,6 +14,29 @@ public abstract class User {
         this.name = name;
         this.email = email;
         this.lastUpdate = LocalDate.now();
+    }
+
+    public User(UUID id, String email, String name, LocalDate lastUpdate) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.lastUpdate = lastUpdate;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public LocalDate getLastUpdate() {
+        return lastUpdate;
     }
 
     protected void update(String name) {
