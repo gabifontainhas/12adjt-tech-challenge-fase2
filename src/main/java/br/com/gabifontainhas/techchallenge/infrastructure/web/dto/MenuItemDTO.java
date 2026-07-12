@@ -9,7 +9,10 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public class MenuItemDTO {
+public final class MenuItemDTO {
+    private MenuItemDTO() {
+    }
+
     public record PostRequest(
 
             @NotBlank

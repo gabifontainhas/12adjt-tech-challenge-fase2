@@ -38,11 +38,11 @@ class UpdateMenuItemUseCaseTest {
 
         var existingMenuItem = new MenuItem(
                 menuItemId,
-                "X-Burger",
+                "Cheese Burger",
                 "Delicious burger with cheese",
                 BigDecimal.valueOf(25.90),
                 false,
-                "images/xburger.png",
+                "images/cheeseburger.png",
                 restaurantId
         );
         var putRequest = new UpdateMenuItemCommand(
@@ -87,11 +87,11 @@ class UpdateMenuItemUseCaseTest {
 
         var nonExistentId = UUID.randomUUID();
         var putRequest = new UpdateMenuItemCommand(
-                "X-Burger",
+                "Cheese Burger",
                 "Delicious burger with cheese",
                 BigDecimal.valueOf(25.90),
                 false,
-                "images/xburger.png"
+                "images/cheeseburger.png"
         );
 
         when(menuItemRepository.findById(nonExistentId)).thenReturn(Optional.empty());

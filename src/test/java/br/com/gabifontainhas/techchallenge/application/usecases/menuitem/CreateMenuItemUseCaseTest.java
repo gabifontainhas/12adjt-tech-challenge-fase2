@@ -39,11 +39,11 @@ class CreateMenuItemUseCaseTest {
         // Arrange
         var restaurantId = UUID.randomUUID();
         var request = new CreateMenuItemCommand(
-                "X-Burger",
+                "Cheese Burger",
                 "Delicious burger with cheese",
                 BigDecimal.valueOf(25.90),
                 false,
-                "images/xburger.png",
+                "images/cheeseburger.png",
                 restaurantId
         );
         var expectedMenuItem = new MenuItem(
@@ -82,11 +82,11 @@ class CreateMenuItemUseCaseTest {
         // Arrange
         var restaurantId = UUID.randomUUID();
         var request = new CreateMenuItemCommand(
-                "X-Burger",
+                "Cheese Burger",
                 "Delicious burger with cheese",
                 BigDecimal.valueOf(25.90),
                 false,
-                "images/xburger.png",
+                "images/cheeseburger.png",
                 restaurantId
         );
 
@@ -109,11 +109,11 @@ class CreateMenuItemUseCaseTest {
         // Arrange
         var restaurantId = UUID.randomUUID();
         var request = new CreateMenuItemCommand(
-                "X-Burger",
+                "Cheese Burger",
                 "Delicious burger with cheese",
                 BigDecimal.valueOf(25.90),
                 false,
-                "images/xburger.png",
+                "images/cheeseburger.png",
                 restaurantId
         );
 

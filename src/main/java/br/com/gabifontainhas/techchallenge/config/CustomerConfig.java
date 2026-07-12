@@ -1,10 +1,7 @@
 package br.com.gabifontainhas.techchallenge.config;
 
 import br.com.gabifontainhas.techchallenge.application.gateway.CustomerRepository;
-import br.com.gabifontainhas.techchallenge.application.usecases.customer.CreateCustomerUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.customer.DeleteCustomerUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.customer.ListCustomersUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.customer.UpdateCustomerUseCase;
+import br.com.gabifontainhas.techchallenge.application.usecases.customer.*;
 import br.com.gabifontainhas.techchallenge.infrastructure.gateways.CustomerRepositoryAdapter;
 import br.com.gabifontainhas.techchallenge.infrastructure.persistance.CustomerJpaRepository;
 import org.springframework.context.annotation.Bean;
@@ -18,8 +15,13 @@ public class CustomerConfig {
     }
 
     @Bean
-    public ListCustomersUseCase listCustomerUseCase(CustomerRepository customerRepository) {
+    public ListCustomersUseCase listCustomersUseCase(CustomerRepository customerRepository) {
         return new ListCustomersUseCase(customerRepository);
+    }
+
+    @Bean
+    public ListCustomerByIdUseCase listCustomerByIdUseCase(CustomerRepository customerRepository) {
+        return new ListCustomerByIdUseCase(customerRepository);
     }
 
     @Bean

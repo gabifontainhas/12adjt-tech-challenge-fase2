@@ -1,9 +1,6 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web;
 
-import br.com.gabifontainhas.techchallenge.application.usecases.restaurant.CreateRestaurantUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.restaurant.DeleteRestaurantUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.restaurant.ListRestaurantsUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.restaurant.UpdateRestaurantUseCase;
+import br.com.gabifontainhas.techchallenge.application.usecases.restaurant.*;
 import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.RestaurantDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -19,17 +16,20 @@ import java.util.stream.Collectors;
 public class RestaurantController {
     private final CreateRestaurantUseCase createRestaurantUseCase;
     private final ListRestaurantsUseCase listRestaurantsUseCase;
+    private final ListRestaurantByIdUseCase listRestaurantByIdUseCase;
     private final DeleteRestaurantUseCase deleteRestaurantUseCase;
     private final UpdateRestaurantUseCase updateRestaurantUseCase;
 
     public RestaurantController(
             CreateRestaurantUseCase createRestaurantUseCase,
             ListRestaurantsUseCase listRestaurantsUseCase,
+            ListRestaurantByIdUseCase listRestaurantByIdUseCase,
             DeleteRestaurantUseCase deleteRestaurantUseCase,
             UpdateRestaurantUseCase updateRestaurantUseCase
     ) {
         this.createRestaurantUseCase = createRestaurantUseCase;
         this.listRestaurantsUseCase = listRestaurantsUseCase;
+        this.listRestaurantByIdUseCase = listRestaurantByIdUseCase;
         this.deleteRestaurantUseCase = deleteRestaurantUseCase;
         this.updateRestaurantUseCase = updateRestaurantUseCase;
     }
@@ -52,7 +52,7 @@ public class RestaurantController {
 
     @GetMapping("/{id}")
     public ResponseEntity<RestaurantDTO.Response> listRestaurantById(@PathVariable UUID id) {
-        var restaurant = listRestaurantsUseCase.getRestaurantById(id);
+        var restaurant = listRestaurantByIdUseCase.getRestaurantById(id);
         return ResponseEntity.ok(new RestaurantDTO.Response(restaurant));
     }
 

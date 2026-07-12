@@ -9,6 +9,8 @@ import jakarta.validation.constraints.NotNull;
 import java.util.UUID;
 
 public class RestaurantDTO {
+    private RestaurantDTO() {
+    }
 
     public record PostRequest(
 

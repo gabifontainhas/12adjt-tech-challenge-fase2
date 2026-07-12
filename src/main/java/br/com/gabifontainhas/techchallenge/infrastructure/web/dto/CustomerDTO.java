@@ -10,6 +10,8 @@ import java.util.UUID;
 
 
 public final class CustomerDTO {
+    private CustomerDTO() {
+    }
 
     public record PostRequest(
             @NotBlank
@@ -23,7 +25,7 @@ public final class CustomerDTO {
 
     ) {
         public CreateCustomerCommand toCommand() {
-            return new CreateCustomerCommand(this.name, this.email, this.phoneNumber);
+            return new CreateCustomerCommand(this.email, this.name, this.phoneNumber);
         }
     }
 

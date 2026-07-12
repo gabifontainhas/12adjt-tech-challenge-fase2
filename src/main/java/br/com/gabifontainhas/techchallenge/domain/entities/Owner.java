@@ -7,7 +7,7 @@ public class Owner extends User {
     private String businessPhone;
 
     public Owner(String email, String name, String businessPhone) {
-        super(name, email);
+        super(email, name);
         this.businessPhone = businessPhone;
     }
 

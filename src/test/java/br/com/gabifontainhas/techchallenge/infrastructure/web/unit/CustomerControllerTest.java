@@ -1,5 +1,6 @@
-package br.com.gabifontainhas.techchallenge.infrastructure.web;
+package br.com.gabifontainhas.techchallenge.infrastructure.web.unit;
 
+import br.com.gabifontainhas.techchallenge.application.exception.EmailAlreadyExistsException;
 import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.usecases.customer.*;
 import br.com.gabifontainhas.techchallenge.domain.entities.Customer;
@@ -42,6 +43,9 @@ class CustomerControllerTest {
 
     @MockitoBean
     private ListCustomersUseCase listCustomersUseCase;
+
+    @MockitoBean
+    private ListCustomerByIdUseCase listCustomerByIdUseCase;
 
     @MockitoBean
     private DeleteCustomerUseCase deleteCustomerUseCase;
@@ -90,6 +94,21 @@ class CustomerControllerTest {
             Mockito.verifyNoInteractions(createCustomerUseCase);
         }
 
+
+        @Test
+        @DisplayName("Should return 422 Unprocessable Content when e-mail already exists")
+        void shouldReturn422WhenEmailAlreadyExists() throws Exception {
+            // Arrange
+            var request = new CustomerDTO.PostRequest("jimhalpert@dundermifflin.com", "Jim Halpert", "11999999999");
+
+            when(createCustomerUseCase.create(any())).thenThrow(new EmailAlreadyExistsException("Email already exists"));
+
+            // Act & Assert
+            mockMvc.perform(post("/v1/customers")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isUnprocessableContent());
+        }
     }
 
     @Nested
@@ -129,7 +148,7 @@ class CustomerControllerTest {
 
             var customer = new Customer(customerId, "jim.halpert@dundermifflin.com", "Jim Halpert", lastUpdate, "11999999999");
 
-            when(listCustomersUseCase.getCustomersById(customerId)).thenReturn(customer);
+            when(listCustomerByIdUseCase.getCustomersById(customerId)).thenReturn(customer);
 
             // Act & Assert
             mockMvc.perform(get("/v1/customers/{id}", customerId))
@@ -146,7 +165,7 @@ class CustomerControllerTest {
         void shouldReturn404WhenCustomerDoesNotExist() throws Exception {
             // Arrange
             var nonExistentId = UUID.randomUUID();
-            when(listCustomersUseCase.getCustomersById(nonExistentId))
+            when(listCustomerByIdUseCase.getCustomersById(nonExistentId))
                     .thenThrow(new UserNotFoundException("Customer not found"));
 
             // Act & Assert

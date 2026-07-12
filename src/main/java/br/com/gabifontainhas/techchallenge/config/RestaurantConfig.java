@@ -2,10 +2,7 @@ package br.com.gabifontainhas.techchallenge.config;
 
 import br.com.gabifontainhas.techchallenge.application.gateway.OwnerRepository;
 import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
-import br.com.gabifontainhas.techchallenge.application.usecases.restaurant.CreateRestaurantUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.restaurant.DeleteRestaurantUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.restaurant.ListRestaurantsUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.restaurant.UpdateRestaurantUseCase;
+import br.com.gabifontainhas.techchallenge.application.usecases.restaurant.*;
 import br.com.gabifontainhas.techchallenge.infrastructure.gateways.RestaurantRepositoryAdapter;
 import br.com.gabifontainhas.techchallenge.infrastructure.persistance.RestaurantJpaRepository;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +18,11 @@ public class RestaurantConfig {
     @Bean
     public ListRestaurantsUseCase listRestaurantsUseCase(RestaurantRepository restaurantRepository) {
         return new ListRestaurantsUseCase(restaurantRepository);
+    }
+
+    @Bean
+    public ListRestaurantByIdUseCase listRestaurantByIdUseCase(RestaurantRepository restaurantRepository) {
+        return new ListRestaurantByIdUseCase(restaurantRepository);
     }
 
     @Bean

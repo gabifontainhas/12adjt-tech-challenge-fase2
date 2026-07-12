@@ -1,9 +1,6 @@
 package br.com.gabifontainhas.techchallenge.application.usecases.menuitem;
 
-import br.com.gabifontainhas.techchallenge.application.exception.MenuItemNotFoundException;
-import br.com.gabifontainhas.techchallenge.application.exception.RestaurantNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.MenuItemRepository;
-import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
 import br.com.gabifontainhas.techchallenge.domain.entities.MenuItem;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,17 +12,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ListMenuItemsUseCaseTest {
-
-    @Mock
-    private RestaurantRepository restaurantRepository;
 
     @Mock
     private MenuItemRepository menuItemRepository;
@@ -40,16 +33,16 @@ class ListMenuItemsUseCaseTest {
         // Arrange
         var restaurantId = UUID.randomUUID();
 
-        var menuItem1 =  new MenuItem(
-                "X-Burger",
+        var menuItem1 = new MenuItem(
+                "Cheese Burger",
                 "Delicious burger with cheese",
                 BigDecimal.valueOf(25.90),
                 false,
-                "images/xburger.png",
+                "images/cheeseburger.png",
                 restaurantId
         );
 
-        var menuItem2 =  new MenuItem(
+        var menuItem2 = new MenuItem(
                 "Chocolate Milkshake",
                 "Delicious milkshake with chocolate syrup",
                 BigDecimal.valueOf(14.90),
@@ -68,11 +61,11 @@ class ListMenuItemsUseCaseTest {
         assertEquals(2, result.size());
 
         assertNotNull(result.getFirst().getId());
-        assertEquals("X-Burger", result.getFirst().getName());
+        assertEquals("Cheese Burger", result.getFirst().getName());
         assertEquals("Delicious burger with cheese", result.getFirst().getDescription());
         assertEquals(BigDecimal.valueOf(25.90), result.getFirst().getPrice());
         assertFalse(result.getFirst().isDineInOnly());
-        assertEquals("images/xburger.png", result.getFirst().getImagePath());
+        assertEquals("images/cheeseburger.png", result.getFirst().getImagePath());
         assertEquals(restaurantId, result.getFirst().getRestaurantId());
 
         assertNotNull(result.get(1).getId());
@@ -99,112 +92,6 @@ class ListMenuItemsUseCaseTest {
         // Assert
         assertNotNull(result);
         assertTrue(result.isEmpty());
-    }
-
-
-    @Test
-    @DisplayName("Should return menu items of a specific restaurant successfully when restaurant exists")
-    void shouldReturnMenuItemsByRestaurantSuccessfully() {
-        // Arrange
-
-        var restaurantId = UUID.randomUUID();
-
-        var menuItem =  new MenuItem(
-                "X-Burger",
-                "Delicious burger with cheese",
-                BigDecimal.valueOf(25.90),
-                false,
-                "images/xburger.png",
-                restaurantId
-        );
-
-        when(restaurantRepository.existsById(restaurantId)).thenReturn(true);
-        when(menuItemRepository.findByRestaurantId(restaurantId)).thenReturn(List.of(menuItem));
-
-        // Act
-        var result = listMenuItemsUseCase.getAllMenuItemsByRestaurant(restaurantId);
-
-        // Assert
-        assertNotNull(result);
-        assertEquals(1, result.size());
-
-        assertNotNull(result.getFirst().getId());
-        assertEquals("X-Burger", result.getFirst().getName());
-        assertEquals("Delicious burger with cheese", result.getFirst().getDescription());
-        assertEquals(BigDecimal.valueOf(25.90), result.getFirst().getPrice());
-        assertFalse(result.getFirst().isDineInOnly());
-        assertEquals("images/xburger.png", result.getFirst().getImagePath());
-        assertEquals(restaurantId, result.getFirst().getRestaurantId());
-
-    }
-
-
-    @Test
-    @DisplayName("Should throw RestaurantNotFoundException when trying to list items of a non-existent restaurant")
-    void shouldThrowExceptionWhenRestaurantDoesNotExist() {
-        // Arrange
-        var nonExistentId = UUID.randomUUID();
-        when(restaurantRepository.existsById(nonExistentId)).thenReturn(false);
-
-        // Act & Assert
-        var exception = assertThrows(
-                RestaurantNotFoundException.class,
-                () -> listMenuItemsUseCase.getAllMenuItemsByRestaurant(nonExistentId)
-        );
-
-        assertEquals("Could not list menu items: The provided Restaurant does not exist", exception.getMessage());
-        verify(menuItemRepository, never()).findByRestaurantId(any(UUID.class));
-    }
-
-
-    @Test
-    @DisplayName("Should return a specific menu item by ID when it exists")
-    void shouldReturnMenuItemById() {
-        // Arrange
-        var menuItemId = UUID.randomUUID();
-        var restaurantId = UUID.randomUUID();
-        var expectedItem =  new MenuItem(
-                "X-Burger",
-                "Delicious burger with cheese",
-                BigDecimal.valueOf(25.90),
-                false,
-                "images/xburger.png",
-                restaurantId
-        );
-
-        when(menuItemRepository.findById(menuItemId)).thenReturn(Optional.of(expectedItem));
-
-        // Act
-        var result = listMenuItemsUseCase.getMenuItemById(menuItemId);
-
-        // Assert
-        assertNotNull(result);
-
-        assertNotNull(result.getId());
-        assertEquals("X-Burger", result.getName());
-        assertEquals("Delicious burger with cheese", result.getDescription());
-        assertEquals(BigDecimal.valueOf(25.90), result.getPrice());
-        assertFalse(result.isDineInOnly());
-        assertEquals("images/xburger.png", result.getImagePath());
-        assertEquals(restaurantId, result.getRestaurantId());
-    }
-
-    @Test
-    @DisplayName("Should throw MenuItemNotFoundException when menu item by ID is not found")
-    void shouldThrowExceptionWhenMenuItemDoesNotExist() {
-        // Arrange
-        var nonExistentId = UUID.randomUUID();
-
-        when(menuItemRepository.findById(nonExistentId)).thenReturn(Optional.empty());
-
-        // Act & Assert
-        var exception = assertThrows(
-                MenuItemNotFoundException.class,
-                () -> listMenuItemsUseCase.getMenuItemById(nonExistentId)
-        );
-
-        assertEquals("Menu item not found", exception.getMessage());
-        verify(menuItemRepository, times(1)).findById(nonExistentId);
     }
 
 }

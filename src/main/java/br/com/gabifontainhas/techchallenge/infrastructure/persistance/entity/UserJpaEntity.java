@@ -24,13 +24,6 @@ public class UserJpaEntity {
 
         private LocalDate lastUpdate;
 
-        public UserJpaEntity(UUID id, String email, String name) {
-                this.id = id;
-                this.email = email;
-                this.name = name;
-                this.lastUpdate = LocalDate.now();
-        }
-
         public UserJpaEntity(UUID id, String email, String name, LocalDate lastUpdate) {
                 this.id = id;
                 this.email = email;

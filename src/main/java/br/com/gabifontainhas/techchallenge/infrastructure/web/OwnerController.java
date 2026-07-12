@@ -1,10 +1,7 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web;
 
 
-import br.com.gabifontainhas.techchallenge.application.usecases.owner.CreateOwnerUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.owner.DeleteOwnerUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.owner.ListOwnersUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.owner.UpdateOwnerUseCase;
+import br.com.gabifontainhas.techchallenge.application.usecases.owner.*;
 import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.OwnerDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -20,17 +17,20 @@ import java.util.stream.Collectors;
 public class OwnerController {
     private final CreateOwnerUseCase createOwnerUseCase;
     private final ListOwnersUseCase listOwnersUseCase;
+    private final ListOwnerByIdUseCase listOwnerByIdUseCase;
     private final DeleteOwnerUseCase deleteOwnerUseCase;
     private final UpdateOwnerUseCase updateOwnerUseCase;
 
     public OwnerController(
             CreateOwnerUseCase createOwnerUseCase,
             ListOwnersUseCase listOwnersUseCase,
+            ListOwnerByIdUseCase listOwnerByIdUseCase,
             DeleteOwnerUseCase deleteOwnerUseCase,
             UpdateOwnerUseCase updateOwnerUseCase
     ) {
         this.createOwnerUseCase = createOwnerUseCase;
         this.listOwnersUseCase = listOwnersUseCase;
+        this.listOwnerByIdUseCase = listOwnerByIdUseCase;
         this.deleteOwnerUseCase = deleteOwnerUseCase;
         this.updateOwnerUseCase = updateOwnerUseCase;
     }
@@ -53,7 +53,7 @@ public class OwnerController {
 
     @GetMapping("/{id}")
     public ResponseEntity<OwnerDTO.Response> listCustomerById(@PathVariable UUID id) {
-        var customer = listOwnersUseCase.getOwnerById(id);
+        var customer = listOwnerByIdUseCase.getOwnerById(id);
         return ResponseEntity.ok(new OwnerDTO.Response(customer));
     }
 

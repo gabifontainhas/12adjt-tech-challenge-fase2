@@ -1,10 +1,8 @@
-package br.com.gabifontainhas.techchallenge.infrastructure.web;
+package br.com.gabifontainhas.techchallenge.infrastructure.web.unit;
 
+import br.com.gabifontainhas.techchallenge.application.exception.EmailAlreadyExistsException;
 import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
-import br.com.gabifontainhas.techchallenge.application.usecases.owner.CreateOwnerUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.owner.DeleteOwnerUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.owner.ListOwnersUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.owner.UpdateOwnerUseCase;
+import br.com.gabifontainhas.techchallenge.application.usecases.owner.*;
 import br.com.gabifontainhas.techchallenge.domain.entities.Owner;
 import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.OwnerDTO;
 import org.junit.jupiter.api.DisplayName;
@@ -45,6 +43,9 @@ class OwnerControllerTest {
 
     @MockitoBean
     private ListOwnersUseCase listOwnersUseCase;
+
+    @MockitoBean
+    private ListOwnerByIdUseCase listOwnerByIdUseCase;
 
     @MockitoBean
     private DeleteOwnerUseCase deleteOwnerUseCase;
@@ -89,6 +90,21 @@ class OwnerControllerTest {
                     .andExpect(status().isBadRequest());
             Mockito.verifyNoInteractions(createOwnerUseCase);
         }
+
+        @Test
+        @DisplayName("Should return 422 Unprocessable Content when e-mail already exists")
+        void shouldReturn422WhenEmailAlreadyExists() throws Exception {
+            // Arrange
+            var request = new OwnerDTO.PostRequest("michael.scott@dundermifflin.com", "Michael Scott", "11999999999");
+
+            when(createOwnerUseCase.create(any())).thenThrow(new EmailAlreadyExistsException("Email already exists"));
+
+            // Act & Assert
+            mockMvc.perform(post("/v1/owners")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(request)))
+                    .andExpect(status().isUnprocessableContent());
+        }
     }
 
     @Nested
@@ -125,7 +141,7 @@ class OwnerControllerTest {
 
             var owner =  new Owner(ownerId,"michael.scott@dundermifflin.com", "Michael Scott", lastUpdate, "11888888888");
 
-            when(listOwnersUseCase.getOwnerById(ownerId)).thenReturn(owner);
+            when(listOwnerByIdUseCase.getOwnerById(ownerId)).thenReturn(owner);
 
             // Act & Assert
             mockMvc.perform(get("/v1/owners/{id}", ownerId))
@@ -143,7 +159,7 @@ class OwnerControllerTest {
         void shouldReturn404WhenOwnerDoesNotExist() throws Exception {
             // Arrange
             var nonExistentId = UUID.randomUUID();
-            when(listOwnersUseCase.getOwnerById(nonExistentId))
+            when(listOwnerByIdUseCase.getOwnerById(nonExistentId))
                     .thenThrow(new UserNotFoundException("Owner not found"));
 
             // Act & Assert

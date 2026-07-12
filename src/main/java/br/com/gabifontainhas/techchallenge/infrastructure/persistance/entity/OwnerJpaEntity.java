@@ -13,15 +13,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 public class OwnerJpaEntity extends UserJpaEntity {
-    private String restaurantName;
+    private String businessPhone;
 
-    public OwnerJpaEntity(UUID id, String email, String name, String restaurantName) {
-        super(id, email, name);
-        this.restaurantName = restaurantName;
-    }
-
-    public OwnerJpaEntity(UUID id, String email, String name, String restaurantName, LocalDate lastUpdate) {
+    public OwnerJpaEntity(UUID id, String email, String name, String businessPhone, LocalDate lastUpdate) {
         super(id, email, name, lastUpdate);
-        this.restaurantName = restaurantName;
+        this.businessPhone = businessPhone;
     }
 }

@@ -3,7 +3,10 @@ package br.com.gabifontainhas.techchallenge.infrastructure.persistance.mapper;
 import br.com.gabifontainhas.techchallenge.domain.entities.Owner;
 import br.com.gabifontainhas.techchallenge.infrastructure.persistance.entity.OwnerJpaEntity;
 
-public class OwnerMapper {
+public final class OwnerMapper {
+
+    private OwnerMapper() {
+    }
 
     public static OwnerJpaEntity toJpaEntity(Owner domain) {
         if (domain == null) return null;
@@ -25,7 +28,7 @@ public class OwnerMapper {
                 jpaEntity.getEmail(),
                 jpaEntity.getName(),
                 jpaEntity.getLastUpdate(),
-                jpaEntity.getRestaurantName()
+                jpaEntity.getBusinessPhone()
         );
     }
 }

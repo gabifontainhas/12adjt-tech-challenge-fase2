@@ -45,7 +45,7 @@ public class UpdateCustomerUseCaseTest {
         // Act
         var result = updateCustomerUseCase.update(putRequest, customerId);
 
-        // Assert - Validando os novos valores no retorno
+        // Assert
         assertNotNull(result);
         assertEquals(customerId, result.getId());
         assertEquals("James Halpert", result.getName());
@@ -63,7 +63,7 @@ public class UpdateCustomerUseCaseTest {
 
         when(customerRepository.findById(nonExistentId)).thenReturn(Optional.empty());
 
-        // Act & Assert - Executando e validando se lança a exceção esperada
+        // Act & Assert
         var exception = assertThrows(
                 UserNotFoundException.class,
                 () -> updateCustomerUseCase.update(putRequest, nonExistentId)

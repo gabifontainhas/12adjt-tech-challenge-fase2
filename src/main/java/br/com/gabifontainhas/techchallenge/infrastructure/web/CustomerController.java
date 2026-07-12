@@ -1,9 +1,6 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web;
 
-import br.com.gabifontainhas.techchallenge.application.usecases.customer.CreateCustomerUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.customer.DeleteCustomerUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.customer.ListCustomersUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.customer.UpdateCustomerUseCase;
+import br.com.gabifontainhas.techchallenge.application.usecases.customer.*;
 
 import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.CustomerDTO;
 import jakarta.validation.Valid;
@@ -20,17 +17,20 @@ import java.util.stream.Collectors;
 public class CustomerController {
     private final CreateCustomerUseCase createCustomerUseCase;
     private final ListCustomersUseCase listCustomersUseCase;
+    private final ListCustomerByIdUseCase listCustomerByIdUseCase;
     private final DeleteCustomerUseCase deleteCustomerUseCase;
     private final UpdateCustomerUseCase updateCustomerUseCase;
 
     public CustomerController(
             CreateCustomerUseCase createCustomerUseCase,
             ListCustomersUseCase listCustomersUseCase,
+            ListCustomerByIdUseCase listCustomerByIdUseCase,
             DeleteCustomerUseCase deleteCustomerUseCase,
             UpdateCustomerUseCase updateCustomerUseCase
     ) {
         this.createCustomerUseCase = createCustomerUseCase;
         this.listCustomersUseCase = listCustomersUseCase;
+        this.listCustomerByIdUseCase = listCustomerByIdUseCase;
         this.deleteCustomerUseCase = deleteCustomerUseCase;
         this.updateCustomerUseCase = updateCustomerUseCase;
     }
@@ -53,7 +53,7 @@ public class CustomerController {
 
     @GetMapping("/{id}")
     public ResponseEntity<CustomerDTO.Response> listCustomerById(@PathVariable UUID id) {
-        var customer = listCustomersUseCase.getCustomersById(id);
+        var customer = listCustomerByIdUseCase.getCustomersById(id);
         return ResponseEntity.ok(new CustomerDTO.Response(customer));
     }
 

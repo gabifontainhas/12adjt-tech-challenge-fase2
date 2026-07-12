@@ -4,6 +4,9 @@ import br.com.gabifontainhas.techchallenge.domain.valueobjects.Address;
 import jakarta.validation.constraints.NotBlank;
 
 public final class AddressDTO {
+    private AddressDTO() {
+    }
+
     public record Request(
 
             @NotBlank

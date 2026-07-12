@@ -1,10 +1,7 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web;
 
 
-import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.CreateMenuItemUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.DeleteMenuItemUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.ListMenuItemsUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.UpdateMenuItemUseCase;
+import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.*;
 import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.MenuItemDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -20,12 +17,21 @@ import java.util.stream.Collectors;
 public class MenuItemController {
     private final CreateMenuItemUseCase createMenuItemUseCase;
     private final ListMenuItemsUseCase listMenuItemsUseCase;
+    private final ListMenuItemByIdUseCase listMenuItemByIdUseCase;
+    private final ListMenuItemByRestaurantIdUseCase listMenuItemByRestaurantIdUseCase;
     private final DeleteMenuItemUseCase deleteMenuItemUseCase;
     private final UpdateMenuItemUseCase updateMenuItemUseCase;
 
-    public MenuItemController(CreateMenuItemUseCase createMenuItemUseCase, ListMenuItemsUseCase listMenuItemsUseCase, DeleteMenuItemUseCase deleteMenuItemUseCase, UpdateMenuItemUseCase updateMenuItemUseCase) {
+    public MenuItemController(CreateMenuItemUseCase createMenuItemUseCase,
+                              ListMenuItemsUseCase listMenuItemsUseCase,
+                              ListMenuItemByIdUseCase listMenuItemByIdUseCase,
+                              ListMenuItemByRestaurantIdUseCase listMenuItemByRestaurantIdUseCase,
+                              DeleteMenuItemUseCase deleteMenuItemUseCase,
+                              UpdateMenuItemUseCase updateMenuItemUseCase) {
         this.createMenuItemUseCase = createMenuItemUseCase;
         this.listMenuItemsUseCase = listMenuItemsUseCase;
+        this.listMenuItemByIdUseCase = listMenuItemByIdUseCase;
+        this.listMenuItemByRestaurantIdUseCase = listMenuItemByRestaurantIdUseCase;
         this.deleteMenuItemUseCase = deleteMenuItemUseCase;
         this.updateMenuItemUseCase = updateMenuItemUseCase;
     }
@@ -47,13 +53,13 @@ public class MenuItemController {
 
     @GetMapping("/{id}")
     public ResponseEntity<MenuItemDTO.Response> listMenuItemById(@PathVariable UUID id) {
-        var menuItem = listMenuItemsUseCase.getMenuItemById(id);
+        var menuItem = listMenuItemByIdUseCase.getMenuItemById(id);
         return ResponseEntity.ok(new MenuItemDTO.Response(menuItem));
     }
 
     @GetMapping("/restaurant/{restaurantId}")
     public ResponseEntity<List<MenuItemDTO.Response>> ListByRestaurantId(@PathVariable UUID restaurantId) {
-        var menuItemList = listMenuItemsUseCase.getAllMenuItemsByRestaurant(restaurantId);
+        var menuItemList = listMenuItemByRestaurantIdUseCase.getAllMenuItemsByRestaurant(restaurantId);
 
         var response = menuItemList.stream()
                 .map(MenuItemDTO.Response::new)

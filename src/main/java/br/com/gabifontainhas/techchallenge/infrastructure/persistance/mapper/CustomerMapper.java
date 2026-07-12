@@ -3,7 +3,10 @@ package br.com.gabifontainhas.techchallenge.infrastructure.persistance.mapper;
 import br.com.gabifontainhas.techchallenge.domain.entities.Customer;
 import br.com.gabifontainhas.techchallenge.infrastructure.persistance.entity.CustomerJpaEntity;
 
-public class CustomerMapper {
+public final class CustomerMapper {
+
+    private CustomerMapper() {
+    }
 
     public static CustomerJpaEntity toJpaEntity(Customer customer) {
         if (customer == null) return null;

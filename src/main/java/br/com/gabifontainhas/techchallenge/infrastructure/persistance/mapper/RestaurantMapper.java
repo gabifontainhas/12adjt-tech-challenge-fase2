@@ -5,7 +5,11 @@ import br.com.gabifontainhas.techchallenge.domain.valueobjects.Address;
 import br.com.gabifontainhas.techchallenge.infrastructure.persistance.entity.AddressEmbeddable;
 import br.com.gabifontainhas.techchallenge.infrastructure.persistance.entity.RestaurantJpaEntity;
 
-public class RestaurantMapper {
+public final class RestaurantMapper {
+
+    private RestaurantMapper() {
+    }
+
     public static RestaurantJpaEntity toJpaEntity(Restaurant domain) {
         if (domain == null) return null;
         AddressEmbeddable addressEmbeddable = null;

@@ -2,10 +2,7 @@ package br.com.gabifontainhas.techchallenge.config;
 
 import br.com.gabifontainhas.techchallenge.application.gateway.MenuItemRepository;
 import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
-import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.CreateMenuItemUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.DeleteMenuItemUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.ListMenuItemsUseCase;
-import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.UpdateMenuItemUseCase;
+import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.*;
 import br.com.gabifontainhas.techchallenge.infrastructure.gateways.MenuItemRepositoryAdapter;
 import br.com.gabifontainhas.techchallenge.infrastructure.persistance.MenuItemJpaRepository;
 import org.springframework.context.annotation.Bean;
@@ -19,8 +16,18 @@ public class MenuItemConfig {
     }
 
     @Bean
-    public ListMenuItemsUseCase listMenuItemsUseCase(MenuItemRepository menuItemRepository, RestaurantRepository restaurantRepository) {
-        return new ListMenuItemsUseCase(restaurantRepository, menuItemRepository);
+    public ListMenuItemsUseCase listMenuItemsUseCase(MenuItemRepository menuItemRepository) {
+        return new ListMenuItemsUseCase(menuItemRepository);
+    }
+
+    @Bean
+    public ListMenuItemByIdUseCase listMenuItemByIdUseCase(MenuItemRepository menuItemRepository) {
+        return new ListMenuItemByIdUseCase(menuItemRepository);
+    }
+
+    @Bean
+    public ListMenuItemByRestaurantIdUseCase listMenuItemByRestaurantIdUseCase(MenuItemRepository menuItemRepository, RestaurantRepository restaurantRepository) {
+        return new ListMenuItemByRestaurantIdUseCase(restaurantRepository, menuItemRepository);
     }
 
     @Bean

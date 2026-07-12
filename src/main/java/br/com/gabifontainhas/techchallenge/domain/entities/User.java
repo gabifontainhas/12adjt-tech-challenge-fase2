@@ -9,7 +9,7 @@ public abstract class User {
     private String name;
     private LocalDate lastUpdate;
 
-    protected User(String name, String email) {
+    protected User(String email, String name) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.email = email;

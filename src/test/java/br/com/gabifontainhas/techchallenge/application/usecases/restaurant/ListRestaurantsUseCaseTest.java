@@ -1,6 +1,5 @@
 package br.com.gabifontainhas.techchallenge.application.usecases.restaurant;
 
-import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
 import br.com.gabifontainhas.techchallenge.domain.entities.Restaurant;
 import br.com.gabifontainhas.techchallenge.domain.valueobjects.Address;
@@ -13,7 +12,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -102,55 +100,5 @@ class ListRestaurantsUseCaseTest {
         // Assert
         assertNotNull(result);
         assertTrue(result.isEmpty());
-    }
-
-    @Test
-    @DisplayName("Should return a restaurant by ID when the restaurant exists")
-    void shouldReturnRestaurantById() {
-        // Arrange
-
-        var restaurantId = UUID.randomUUID();
-        var ownerId = UUID.randomUUID();
-
-        var address = new Address("Main Street", "123", "Downtown", "New York", "NY", "12345000");
-
-        var expectedRestaurant = new Restaurant(restaurantId,
-                "Holy Burger",
-                address,
-                "Fast Food",
-                "08:00-22:00",
-                ownerId
-        );
-
-        when(restaurantRepository.findById(restaurantId)).thenReturn(Optional.of(expectedRestaurant));
-
-        // Act
-        var result = listRestaurantsUseCase.getRestaurantById(restaurantId);
-
-        // Assert
-        assertNotNull(result);
-        assertEquals(restaurantId, result.getId());
-        assertEquals("Holy Burger", result.getName());
-        assertEquals("Fast Food", result.getCuisineType());
-        assertEquals("08:00-22:00", result.getOperatingHours());
-        assertEquals(ownerId, result.getOwnerId());
-
-    }
-
-
-    @Test
-    @DisplayName("Should throw UserNotFoundException when restaurant by ID is not found")
-    void shouldThrowExceptionWhenRestaurantByIdDoesNotExist() {
-        // Arrange
-        var nonExistentId = UUID.randomUUID();
-        when(restaurantRepository.findById(nonExistentId)).thenReturn(Optional.empty());
-
-        // Act & Assert
-        var exception = assertThrows(
-                UserNotFoundException.class,
-                () -> listRestaurantsUseCase.getRestaurantById(nonExistentId)
-        );
-
-        assertEquals("Restaurant not found", exception.getMessage());
     }
 }

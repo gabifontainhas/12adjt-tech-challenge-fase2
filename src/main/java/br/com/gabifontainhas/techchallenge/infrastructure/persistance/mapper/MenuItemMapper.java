@@ -3,7 +3,10 @@ package br.com.gabifontainhas.techchallenge.infrastructure.persistance.mapper;
 import br.com.gabifontainhas.techchallenge.domain.entities.MenuItem;
 import br.com.gabifontainhas.techchallenge.infrastructure.persistance.entity.MenuItemJpaEntity;
 
-public class MenuItemMapper {
+public final class MenuItemMapper {
+
+    private MenuItemMapper() {
+    }
 
     public static MenuItemJpaEntity toJpaEntity(MenuItem domain) {
         if (domain == null) return null;

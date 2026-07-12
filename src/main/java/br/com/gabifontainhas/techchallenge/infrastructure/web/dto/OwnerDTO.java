@@ -9,6 +9,9 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public final class OwnerDTO {
+    private OwnerDTO() {
+    }
+
     public record PostRequest(
 
             @NotBlank
@@ -21,7 +24,7 @@ public final class OwnerDTO {
             String businessPhone
     ) {
         public CreateOwnerCommand toCommand() {
-            return new CreateOwnerCommand(this.name, this.email, this.businessPhone);
+            return new CreateOwnerCommand(this.email, this.name, this.businessPhone);
         }
     }
 

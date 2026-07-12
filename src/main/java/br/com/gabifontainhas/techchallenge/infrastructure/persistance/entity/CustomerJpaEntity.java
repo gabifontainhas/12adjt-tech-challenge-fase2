@@ -16,11 +16,6 @@ public class CustomerJpaEntity extends UserJpaEntity {
 
     private String phoneNumber;
 
-    public CustomerJpaEntity(UUID id, String email, String name, String phoneNumber) {
-        super(id, email, name);
-        this.phoneNumber = phoneNumber;
-    }
-
     public CustomerJpaEntity(UUID id, String email, String name, String phoneNumber, LocalDate lastUpdate) {
         super(id, email, name, lastUpdate);
         this.phoneNumber = phoneNumber;
