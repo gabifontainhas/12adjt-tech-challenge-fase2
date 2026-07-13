@@ -5,6 +5,7 @@ import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.RestaurantDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -57,6 +58,7 @@ public class RestaurantController {
     }
 
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity<Void> deleteRestaurantById(@PathVariable UUID id) {
         deleteRestaurantUseCase.delete(id);
         return ResponseEntity.noContent().build();

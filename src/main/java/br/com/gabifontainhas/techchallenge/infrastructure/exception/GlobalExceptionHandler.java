@@ -64,5 +64,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return problem;
     }
 
+    @ExceptionHandler(CannotDeleteOwnerIfHasRestaurant.class)
+    public ProblemDetail handle(CannotDeleteOwnerIfHasRestaurant ex) {
+        var problem = ProblemDetail.forStatusAndDetail(
+                HttpStatus.CONFLICT,
+                ex.getMessage()
+        );
+        return problem;
+    }
+
 }
 

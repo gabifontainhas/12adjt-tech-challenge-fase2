@@ -1,7 +1,9 @@
 package br.com.gabifontainhas.techchallenge.application.usecases.owner;
 
+import br.com.gabifontainhas.techchallenge.application.exception.CannotDeleteOwnerIfHasRestaurant;
 import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.OwnerRepository;
+import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,8 +22,12 @@ class DeleteOwnerUseCaseTest {
     @Mock
     private OwnerRepository ownerRepository;
 
+    @Mock
+    private RestaurantRepository restaurantRepository;
+
     @InjectMocks
     private DeleteOwnerUseCase deleteOwnerUseCase;
+
 
     @Test
     @DisplayName("Should delete owner successfully when owner exists")
@@ -30,12 +36,15 @@ class DeleteOwnerUseCaseTest {
         var ownerId = UUID.randomUUID();
 
         when(ownerRepository.existsById(ownerId)).thenReturn(true);
+        when(restaurantRepository.existsByOwnerId(ownerId)).thenReturn(false);
+
         doNothing().when(ownerRepository).delete(ownerId);
 
         // Act & Assert
         assertDoesNotThrow(() -> deleteOwnerUseCase.delete(ownerId));
 
         verify(ownerRepository, times(1)).delete(ownerId);
+        verify(restaurantRepository, times(1)).existsByOwnerId(ownerId);
     }
 
     @Test
@@ -56,6 +65,23 @@ class DeleteOwnerUseCaseTest {
         assertEquals(expectedMessage, exception.getMessage());
 
         verify(ownerRepository, never()).delete(any(UUID.class));
+    }
+
+    @Test
+    @DisplayName("Should throw CannotDeleteOwnerIfHasRestaurant when owner has associated restaurants")
+    void shouldThrowExceptionWhenOwnerHasRestaurants() {
+        // Arrange
+        var ownerId = UUID.randomUUID();
+
+        when(ownerRepository.existsById(ownerId)).thenReturn(true);
+        when(restaurantRepository.existsByOwnerId(ownerId)).thenReturn(true);
+
+        // Act & Assert
+        assertThrows(CannotDeleteOwnerIfHasRestaurant.class, () -> deleteOwnerUseCase.delete(ownerId));
+
+        // Garantias cruciais de segurança:
+        verify(restaurantRepository, times(1)).existsByOwnerId(ownerId);
+        verify(ownerRepository, never()).delete(ownerId);
     }
 
 }

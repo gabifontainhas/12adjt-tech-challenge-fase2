@@ -1,6 +1,6 @@
 package br.com.gabifontainhas.techchallenge.application.usecases.menuitem;
 
-import br.com.gabifontainhas.techchallenge.application.exception.RestaurantNotFoundException;
+import br.com.gabifontainhas.techchallenge.application.exception.MenuItemNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.gateway.MenuItemRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,7 +39,7 @@ class DeleteMenuItemUseCaseTest {
     }
 
     @Test
-    @DisplayName("Should throw RestaurantNotFoundException when trying to delete a non-existent menu item")
+    @DisplayName("Should throw MenuItemNotFoundException when trying to delete a non-existent menu item")
     void shouldThrowExceptionWhenMenuItemDoesNotExist() {
         // Arrange
         var nonExistentId = UUID.randomUUID();
@@ -48,7 +48,7 @@ class DeleteMenuItemUseCaseTest {
 
         // Act & Assert
         var exception = assertThrows(
-                RestaurantNotFoundException.class,
+                MenuItemNotFoundException.class,
                 () -> deleteMenuItemUseCase.delete(nonExistentId)
         );
 

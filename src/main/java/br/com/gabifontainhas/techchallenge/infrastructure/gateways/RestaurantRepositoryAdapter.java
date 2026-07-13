@@ -49,4 +49,7 @@ public class RestaurantRepositoryAdapter implements RestaurantRepository {
     public boolean existsByName(String name) {
         return this.restaurantJpaRepository.existsByName(name);
     }
+
+    @Override
+    public boolean existsByOwnerId(UUID ownerId) { return this.restaurantJpaRepository.existsByOwnerId(ownerId);   }
 }

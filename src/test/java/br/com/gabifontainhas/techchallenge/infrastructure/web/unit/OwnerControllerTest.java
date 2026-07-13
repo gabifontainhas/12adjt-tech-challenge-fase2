@@ -1,5 +1,6 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web.unit;
 
+import br.com.gabifontainhas.techchallenge.application.exception.CannotDeleteOwnerIfHasRestaurant;
 import br.com.gabifontainhas.techchallenge.application.exception.EmailAlreadyExistsException;
 import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
 import br.com.gabifontainhas.techchallenge.application.usecases.owner.*;
@@ -195,6 +196,19 @@ class OwnerControllerTest {
             // Act & Assert
             mockMvc.perform(delete("/v1/owners/{id}", ownerId))
                     .andExpect(status().isNotFound());
+        }
+
+        @Test
+        @DisplayName("Should return 409 Conflict when trying to delete owner that has restaurants")
+        void shouldReturn409WhenOwnerToDeleteHasRestaurants() throws Exception {
+            // Arrange
+            var ownerId = UUID.randomUUID();
+            doThrow(new CannotDeleteOwnerIfHasRestaurant("Could not delete owner. There are restaurants associated with this owner."))
+                    .when(deleteOwnerUseCase).delete(ownerId);
+
+            // Act & Assert
+            mockMvc.perform(delete("/v1/owners/{id}", ownerId))
+                    .andExpect(status().isConflict());
         }
 
     }

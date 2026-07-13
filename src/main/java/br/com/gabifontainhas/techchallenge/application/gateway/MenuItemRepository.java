@@ -20,4 +20,6 @@ public interface MenuItemRepository {
     boolean existsByNameAndRestaurantId(String name, UUID id);
 
     List<MenuItem> findByRestaurantId(UUID id);
+
+    void deleteByRestaurantId(UUID restaurantId);
 }

@@ -1,5 +1,6 @@
 package br.com.gabifontainhas.techchallenge.config;
 
+import br.com.gabifontainhas.techchallenge.application.gateway.MenuItemRepository;
 import br.com.gabifontainhas.techchallenge.application.gateway.OwnerRepository;
 import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
 import br.com.gabifontainhas.techchallenge.application.usecases.restaurant.*;
@@ -26,8 +27,8 @@ public class RestaurantConfig {
     }
 
     @Bean
-    public DeleteRestaurantUseCase deleteRestaurantUseCase(RestaurantRepository restaurantRepository) {
-        return new DeleteRestaurantUseCase(restaurantRepository);
+    public DeleteRestaurantUseCase deleteRestaurantUseCase(RestaurantRepository restaurantRepository, MenuItemRepository menuItemRepository) {
+        return new DeleteRestaurantUseCase(restaurantRepository, menuItemRepository);
     }
 
     @Bean

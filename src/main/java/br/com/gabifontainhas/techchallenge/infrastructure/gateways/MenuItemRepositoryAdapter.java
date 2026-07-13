@@ -54,4 +54,9 @@ public class MenuItemRepositoryAdapter implements MenuItemRepository {
         return menuItemJpaRepository.findByRestaurantId(id).stream()
                 .map(MenuItemMapper::toDomain).collect(Collectors.toList());
     }
+
+    @Override
+    public void deleteByRestaurantId(UUID restaurantId) {
+        this.menuItemJpaRepository.deleteByRestaurantId(restaurantId);
+    }
 }

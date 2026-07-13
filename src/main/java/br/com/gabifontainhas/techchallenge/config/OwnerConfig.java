@@ -1,6 +1,7 @@
 package br.com.gabifontainhas.techchallenge.config;
 
 import br.com.gabifontainhas.techchallenge.application.gateway.OwnerRepository;
+import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
 import br.com.gabifontainhas.techchallenge.application.usecases.owner.*;
 import br.com.gabifontainhas.techchallenge.infrastructure.gateways.OwnerRepositoryAdapter;
 import br.com.gabifontainhas.techchallenge.infrastructure.persistance.OwnerJpaRepository;
@@ -25,8 +26,8 @@ public class OwnerConfig {
     }
 
     @Bean
-    public DeleteOwnerUseCase deleteOwnerUseCase(OwnerRepository ownerRepository) {
-        return new DeleteOwnerUseCase(ownerRepository);
+    public DeleteOwnerUseCase deleteOwnerUseCase(OwnerRepository ownerRepository, RestaurantRepository restaurantRepository) {
+        return new DeleteOwnerUseCase(ownerRepository, restaurantRepository);
     }
 
     @Bean

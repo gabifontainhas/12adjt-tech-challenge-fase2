@@ -1,6 +1,7 @@
 package br.com.gabifontainhas.techchallenge.application.usecases.restaurant;
 
 import br.com.gabifontainhas.techchallenge.application.exception.RestaurantNotFoundException;
+import br.com.gabifontainhas.techchallenge.application.gateway.MenuItemRepository;
 import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,9 @@ class DeleteRestaurantUseCaseTest {
     @Mock
     private RestaurantRepository restaurantRepository;
 
+    @Mock
+    private MenuItemRepository menuItemRepository;
+
     @InjectMocks
     private DeleteRestaurantUseCase deleteRestaurantUseCase;
 
@@ -35,6 +39,7 @@ class DeleteRestaurantUseCaseTest {
         // Act & Assert
         assertDoesNotThrow(() -> deleteRestaurantUseCase.delete(restaurantId));
 
+        verify(menuItemRepository, times(1)).deleteByRestaurantId(restaurantId);
         verify(restaurantRepository, times(1)).delete(restaurantId);
     }
 

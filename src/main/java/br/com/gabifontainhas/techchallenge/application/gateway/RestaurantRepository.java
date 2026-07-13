@@ -18,4 +18,6 @@ public interface RestaurantRepository {
     boolean existsById(UUID id);
 
     boolean existsByName(String name);
+
+    boolean existsByOwnerId(UUID ownerId);
 }
