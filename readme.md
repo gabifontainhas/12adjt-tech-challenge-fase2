@@ -44,7 +44,7 @@ APIs responsáveis pela gestão de restaurantes e itens do cardápio
 ## 🧪 Coleção do Postman para Testes Manuais
 Para validação dos fluxos, foi disponibilizada uma coleção para o Postman, com cenários de sucesso e erro:
 
-🔗 [Postman](https://github.com/gabifontainhas/12adjt-tech-challenge/blob/master/postman/TechChallenge.postman_collection.json
+🔗 [Postman](https://github.com/gabifontainhas/12adjt-tech-challenge-fase2/blob/b46dd61157e87d9586d813476f427f16329ab7d1/postman/TechChallenge_Fase2.postman_collection.json
 )
 
 Para importar a coleção:
