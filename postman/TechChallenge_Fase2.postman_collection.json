@@ -1,0 +1,1484 @@
+{
+  "info": {
+    "_postman_id": "c20e93e1-71c0-4315-8624-db790af271c2",
+    "name": "TechChallenge_Fase2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "1964827"
+  },
+  "item": [
+    {
+      "name": "customer",
+      "item": [
+        {
+          "name": "POST Customer",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/customers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "customers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Customer - Error - Bad Request",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/customers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "customers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Customer - Error - Duplicated E-mail",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/customers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "customers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Customer - Error - Method not allowed",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com4\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/customers/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "customers",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Customers",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/customers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "customers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Customers - Error - Bad Request",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/customers/5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "customers",
+                "5"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Customer by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/v1/customers/8b9a4cea-6530-4c95-b045-ba16c4194985",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "customers",
+                "8b9a4cea-6530-4c95-b045-ba16c4194985"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Customer by ID - Error - Customer Not Found",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/v1/customers/9b13e62a-4ea2-4046-9f38-229f65f18787",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "customers",
+                "9b13e62a-4ea2-4046-9f38-229f65f18787"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Customer",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/customers/ebee4ba7-874c-4a7e-b660-c1f984d025b8",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "customers",
+                "ebee4ba7-874c-4a7e-b660-c1f984d025b8"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Customer - Error - User not found",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/customers/e1b68c27-6c3f-40f8-b7bb-052245a4f3b2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "customers",
+                "e1b68c27-6c3f-40f8-b7bb-052245a4f3b2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Customer - Error - Method not Allowed",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/customers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "customers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Customer",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"James Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/customers/8b9a4cea-6530-4c95-b045-ba16c4194985",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "customers",
+                "8b9a4cea-6530-4c95-b045-ba16c4194985"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Customer - Error - Customer not found",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Jim Halpert2\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/customers/5cb7ef17-f34c-4b33-906b-05abdcf86241",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "customers",
+                "5cb7ef17-f34c-4b33-906b-05abdcf86241"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Customer - Error - Bad Request",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Jim Halpert2\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/customers/0ed84b9e-47f1-4bfc-a789-ac19571b2932",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "customers",
+                "0ed84b9e-47f1-4bfc-a789-ac19571b2932"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "owner",
+      "item": [
+        {
+          "name": "POST Owner",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"michaelscott@teste.com\",\r\n    \"name\": \"Michael Scott\",\r\n    \"businessPhone\": \"1199764582\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/owners",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "owners"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Owner - Error - Duplicated E-mail",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"michaelscott@teste.com\",\r\n    \"name\": \"Michael Scott\",\r\n    \"businessPhone\": \"1199764582\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/owners",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "owners"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Owner - Error - Method not Allowed",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"michaelscott@teste.com\",\r\n    \"name\": \"Michael Scott\",\r\n    \"restaurantName\": \"dunder mifflin\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/owners/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "owners",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Owners",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/owners",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "owners"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Owners - Error - Bad Request",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/owners/5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "owners",
+                "5"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Owners by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/v1/owners/59230b21-3364-442c-995c-af0d9af07c0e",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "owners",
+                "59230b21-3364-442c-995c-af0d9af07c0e"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Owners by ID - Error - Owner not found",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/v1/owners/a7959f5b-d868-4574-92d3-5cecda8d97fb",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "owners",
+                "a7959f5b-d868-4574-92d3-5cecda8d97fb"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Owners",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/owners/bda659b1-5b78-4f6e-be3f-948b2e3a9500",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "owners",
+                "bda659b1-5b78-4f6e-be3f-948b2e3a9500"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Owners - Error - Owner not found",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/owners/a7959f5b-d868-4574-92d3-5cecda8d97fb",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "owners",
+                "a7959f5b-d868-4574-92d3-5cecda8d97fb"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Owners - Error - Method not allowed",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/owners",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "owners"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Owner",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Michael Gary Scott\",\r\n    \"businessPhone\": \"1122222222\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/owners/59230b21-3364-442c-995c-af0d9af07c0e",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "owners",
+                "59230b21-3364-442c-995c-af0d9af07c0e"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Owner - Error - Owner not found",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Jim Halpert\",\r\n    \"businessPhone\": \"1122222222\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/owners/9321ed87-8c95-40ea-84c9-4dfd1f2c446d",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "owners",
+                "9321ed87-8c95-40ea-84c9-4dfd1f2c446d"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Owner - Error - Bad Request",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com4\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/owners/9b13e62a-4ea2-4046-9f38-229f65f18787",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "owners",
+                "9b13e62a-4ea2-4046-9f38-229f65f18787"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "restaurant",
+      "item": [
+        {
+          "name": "POST Restaurant",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Dunder Mifflin\",\r\n    \"cuisineType\": \"fast food\",\r\n    \"operatingHours\": \"10 - 19\",\r\n    \"ownerId\": \"59230b21-3364-442c-995c-af0d9af07c0e\",\r\n    \"address\": {\r\n        \"street\": \"Rua Um\",\r\n        \"number\": \"120\",\r\n        \"neighborhood\": \"Vila Leopoldina\",\r\n        \"city\": \"Sao Paulo\",\r\n        \"state\": \"SP\",\r\n        \"zipCode\": \"05098070\"\r\n    }        \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/restaurants",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "restaurants"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Restaurant - Error - Duplicated Name",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Dunder Mifflin\",\r\n    \"cuisineType\": \"fast food\",\r\n    \"operatingHours\": \"10 - 19\",\r\n    \"ownerId\": \"ffc711cc-1b43-4085-a0ac-8d5588846cee\",\r\n    \"address\": {\r\n        \"street\": \"Rua Um\",\r\n        \"number\": \"120\",\r\n        \"neighborhood\": \"Vila Leopoldina\",\r\n        \"city\": \"Sao Paulo\",\r\n        \"state\": \"SP\",\r\n        \"zipCode\": \"05098070\"\r\n    }        \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/restaurants",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "restaurants"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Restaurant - Error - Method not allowed",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Dunder Mifflin\",\r\n    \"cuisineType\": \"fast food\",\r\n    \"operatingHours\": \"10 - 19\",\r\n    \"ownerId\": \"1\",\r\n    \"address\": {\r\n        \"street\": \"Rua Um\",\r\n        \"number\": \"120\",\r\n        \"neighborhood\": \"Vila Leopoldina\",\r\n        \"city\": \"Sao Paulo\",\r\n        \"state\": \"SP\",\r\n        \"zipCode\": \"05098070\"\r\n    }        \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/restaurants/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "restaurants",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Restaurants",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/restaurants",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "restaurants"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Restaurants - Error - Bad Request",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/restaurants",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "restaurants"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Restaurants by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/v1/restaurants/678be033-7f4e-4dd8-ac47-b9b0bc9c3c3a",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "restaurants",
+                "678be033-7f4e-4dd8-ac47-b9b0bc9c3c3a"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Restaurants by ID - Error - Restaurant not found",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/v1/restaurants/0b96aa29-6e6d-4734-9047-a9d819646093",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "restaurants",
+                "0b96aa29-6e6d-4734-9047-a9d819646093"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Restaurant",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/restaurants/0b96aa29-6e6d-4734-9047-a9d819646093",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "restaurants",
+                "0b96aa29-6e6d-4734-9047-a9d819646093"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Restaurant - Error - Restaurant not found",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/restaurants/0b96aa29-6e6d-4734-9047-a9d819646093",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "restaurants",
+                "0b96aa29-6e6d-4734-9047-a9d819646093"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Restaurant",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Dunder Mifflin4\",\r\n    \"cuisineType\": \"fast food\",\r\n    \"operatingHours\": \"10 - 19\",\r\n    \"ownerId\": \"fa4ff39f-b089-4aec-a13b-3aa786f36b25\",\r\n    \"address\": {\r\n        \"street\": \"Rua Um\",\r\n        \"number\": \"120\",\r\n        \"neighborhood\": \"Vila Leopoldina\",\r\n        \"city\": \"Sao Paulo\",\r\n        \"state\": \"SP\",\r\n        \"zipCode\": \"05098070\"\r\n    }        \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/restaurants/10fbf4c5-7252-47da-a920-fd4f4655c8db",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "restaurants",
+                "10fbf4c5-7252-47da-a920-fd4f4655c8db"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Restaurant - Error - Owner not found",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Dunder Mifflin4\",\r\n    \"cuisineType\": \"fast food\",\r\n    \"operatingHours\": \"10 - 19\",\r\n    \"ownerId\": \"fa4ff39f-b089-4aec-a13b-3aa786f36b25\",\r\n    \"address\": {\r\n        \"street\": \"Rua Um\",\r\n        \"number\": \"120\",\r\n        \"neighborhood\": \"Vila Leopoldina\",\r\n        \"city\": \"Sao Paulo\",\r\n        \"state\": \"SP\",\r\n        \"zipCode\": \"05098070\"\r\n    }        \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/restaurants/10fbf4c5-7252-47da-a920-fd4f4655c8db",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "restaurants",
+                "10fbf4c5-7252-47da-a920-fd4f4655c8db"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Restaurant - Error - Restaurant not found",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Dunder Mifflin4\",\r\n    \"cuisineType\": \"fast food\",\r\n    \"operatingHours\": \"10 - 19\",\r\n    \"ownerId\": \"fa4ff39f-b089-4aec-a13b-3aa786f36b25\",\r\n    \"address\": {\r\n        \"street\": \"Rua Um\",\r\n        \"number\": \"120\",\r\n        \"neighborhood\": \"Vila Leopoldina\",\r\n        \"city\": \"Sao Paulo\",\r\n        \"state\": \"SP\",\r\n        \"zipCode\": \"05098070\"\r\n    }        \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/restaurants/10fbf4c5-7252-47da-a920-fd4f4655c8db",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "restaurants",
+                "10fbf4c5-7252-47da-a920-fd4f4655c8db"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Restaurant - Error - Bad Request",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Dunder Mifflin4\",\r\n    \"operatingHours\": \"10 - 19\",\r\n    \"ownerId\": \"fffc711cc-1b43-4085-a0ac-8d5588846cee\",\r\n    \"address\": {\r\n        \"street\": \"Rua Um\",\r\n        \"number\": \"120\",\r\n        \"neighborhood\": \"Vila Leopoldina\",\r\n        \"city\": \"Sao Paulo\",\r\n        \"state\": \"SP\",\r\n        \"zipCode\": \"05098070\"\r\n    }        \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/restaurants/10fbf4c5-7252-47da-a920-fd4f4655c8db",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "restaurants",
+                "10fbf4c5-7252-47da-a920-fd4f4655c8db"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "menuItem",
+      "item": [
+        {
+          "name": "POST MenuItem",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"hamburguer2\",\r\n    \"description\": \"pao e carne\",\r\n    \"price\": 39.90,\r\n    \"dineInOnly\": false,\r\n    \"imagePath\": \"http://hamburger.jpg\",\r\n    \"restaurantId\": \"d6d453b5-dde6-4087-a527-55975a754bf8\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/menuItems",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "menuItems"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST MenuItem - Error - MenuItem Already Exists",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"hamburguer2\",\r\n    \"description\": \"pao e carne\",\r\n    \"price\": 39.90,\r\n    \"dineInOnly\": false,\r\n    \"imagePath\": \"http://hamburger.jpg\",\r\n    \"restaurantId\": \"49376e8c-7ef2-47d7-959c-4302fb7c879e\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/menuItems",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "menuItems"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST MenuItem - Error - Restaurant not found",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"hamburguer2\",\r\n    \"description\": \"pao e carne\",\r\n    \"price\": 39.90,\r\n    \"dineInOnly\": false,\r\n    \"imagePath\": \"http://hamburger.jpg\",\r\n    \"restaurantId\": \"49376e8c-7ef2-47d7-959c-4302fb7c879e\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/menuItems",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "menuItems"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET MenuItems",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/menuItems",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "menuItems"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET MenuItems - Error - Bad Request",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/menuItems/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "menuItems",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET MenuItems by RestaurantID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/v1/menuItems/restaurant/d6d453b5-dde6-4087-a527-55975a754bf8",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "menuItems",
+                "restaurant",
+                "d6d453b5-dde6-4087-a527-55975a754bf8"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET MenuItems by RestaurantID - Error - Restaurant not found",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/v1/menuItems/restaurant/49376e8c-7ef2-47d7-959c-4302fb7c879e",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "menuItems",
+                "restaurant",
+                "49376e8c-7ef2-47d7-959c-4302fb7c879e"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET MenuItem by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/v1/menuItems/62a84ab8-1929-431c-87a1-5e9fcd751f25",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "menuItems",
+                "62a84ab8-1929-431c-87a1-5e9fcd751f25"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET MenuItem by ID - Error - MenuItem not found",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/v1/menuItems/0840cefc-d6a6-4018-896f-b383181a8680",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "menuItems",
+                "0840cefc-d6a6-4018-896f-b383181a8680"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE MenuItem",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/menuItems/dd5bb1cf-095d-4c5e-a2ba-a28f513bb585",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "menuItems",
+                "dd5bb1cf-095d-4c5e-a2ba-a28f513bb585"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE MenuItem - Error - Menu Item Not found",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/menuItems/dd5bb1cf-095d-4c5e-a2ba-a28f513bb585",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "menuItems",
+                "dd5bb1cf-095d-4c5e-a2ba-a28f513bb585"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT MenuItems",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"cheeseburguer\",\r\n    \"description\": \"pao e carne e queijo\",\r\n    \"price\": 49.90,\r\n    \"dineInOnly\": false,\r\n    \"imagePath\": \"http://hamburger.jpg\",\r\n    \"restaurantId\": \"49376e8c-7ef2-47d7-959c-4302fb7c879e\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/menuItems/fd8d11b4-f481-4e62-915e-97dda7514fb5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "menuItems",
+                "fd8d11b4-f481-4e62-915e-97dda7514fb5"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT MenuItems - Error - MenuItem not found",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"cheeseburguer\",\r\n    \"description\": \"pao e carne e queijo\",\r\n    \"price\": 49.90,\r\n    \"dineInOnly\": false,\r\n    \"imagePath\": \"http://hamburger.jpg\",\r\n    \"restaurantId\": \"49376e8c-7ef2-47d7-959c-4302fb7c879e\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/menuItems/a5e9595d-338f-4d45-a445-57dfb2f0b0a5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "menuItems",
+                "a5e9595d-338f-4d45-a445-57dfb2f0b0a5"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT MenuItems - Error - Bad Request",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"cheeseburguer\",\r\n    \"description\": \"pao e carne e queijo\",\r\n    \"dineInOnly\": false,\r\n    \"imagePath\": \"http://hamburger.jpg\",\r\n    \"restaurantId\": \"49376e8c-7ef2-47d7-959c-4302fb7c879e\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/menuItems/a5e9595d-338f-4d45-a445-57dfb2f0b0a5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "menuItems",
+                "a5e9595d-338f-4d45-a445-57dfb2f0b0a5"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
