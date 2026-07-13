@@ -1,7 +1,7 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web;
 
 
-import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.*;
+import br.com.gabifontainhas.techchallenge.application.usecase.menuitem.*;
 import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.MenuItemDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

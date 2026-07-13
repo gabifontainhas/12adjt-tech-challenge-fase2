@@ -1,6 +1,6 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web.dto;
 
-import br.com.gabifontainhas.techchallenge.domain.valueobjects.Address;
+import br.com.gabifontainhas.techchallenge.domain.valueobject.Address;
 import jakarta.validation.constraints.NotBlank;
 
 public final class AddressDTO {

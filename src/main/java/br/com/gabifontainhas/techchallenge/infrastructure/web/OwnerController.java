@@ -1,7 +1,7 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web;
 
 
-import br.com.gabifontainhas.techchallenge.application.usecases.owner.*;
+import br.com.gabifontainhas.techchallenge.application.usecase.owner.*;
 import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.OwnerDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

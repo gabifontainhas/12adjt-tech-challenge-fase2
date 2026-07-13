@@ -1,8 +1,8 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web.dto;
 
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.CreateMenuItemCommand;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.UpdateMenuItemCommand;
-import br.com.gabifontainhas.techchallenge.domain.entities.MenuItem;
+import br.com.gabifontainhas.techchallenge.application.usecase.dto.CreateMenuItemCommand;
+import br.com.gabifontainhas.techchallenge.application.usecase.dto.UpdateMenuItemCommand;
+import br.com.gabifontainhas.techchallenge.domain.entity.MenuItem;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

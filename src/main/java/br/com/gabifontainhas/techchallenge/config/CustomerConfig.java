@@ -1,9 +1,9 @@
 package br.com.gabifontainhas.techchallenge.config;
 
 import br.com.gabifontainhas.techchallenge.application.gateway.CustomerRepository;
-import br.com.gabifontainhas.techchallenge.application.usecases.customer.*;
-import br.com.gabifontainhas.techchallenge.infrastructure.gateways.CustomerRepositoryAdapter;
-import br.com.gabifontainhas.techchallenge.infrastructure.persistance.CustomerJpaRepository;
+import br.com.gabifontainhas.techchallenge.application.usecase.customer.*;
+import br.com.gabifontainhas.techchallenge.infrastructure.gateway.CustomerRepositoryAdapter;
+import br.com.gabifontainhas.techchallenge.infrastructure.persistence.CustomerJpaRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

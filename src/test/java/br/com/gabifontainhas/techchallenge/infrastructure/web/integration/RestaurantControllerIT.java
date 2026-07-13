@@ -1,11 +1,11 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web.integration;
 
-import br.com.gabifontainhas.techchallenge.domain.entities.Owner;
-import br.com.gabifontainhas.techchallenge.infrastructure.persistance.CustomerJpaRepository;
-import br.com.gabifontainhas.techchallenge.infrastructure.persistance.MenuItemJpaRepository;
-import br.com.gabifontainhas.techchallenge.infrastructure.persistance.OwnerJpaRepository;
-import br.com.gabifontainhas.techchallenge.infrastructure.persistance.RestaurantJpaRepository;
-import br.com.gabifontainhas.techchallenge.infrastructure.persistance.mapper.OwnerMapper;
+import br.com.gabifontainhas.techchallenge.domain.entity.Owner;
+import br.com.gabifontainhas.techchallenge.infrastructure.persistence.CustomerJpaRepository;
+import br.com.gabifontainhas.techchallenge.infrastructure.persistence.MenuItemJpaRepository;
+import br.com.gabifontainhas.techchallenge.infrastructure.persistence.OwnerJpaRepository;
+import br.com.gabifontainhas.techchallenge.infrastructure.persistence.RestaurantJpaRepository;
+import br.com.gabifontainhas.techchallenge.infrastructure.persistence.mapper.OwnerMapper;
 import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.AddressDTO;
 import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.RestaurantDTO;
 import io.restassured.RestAssured;

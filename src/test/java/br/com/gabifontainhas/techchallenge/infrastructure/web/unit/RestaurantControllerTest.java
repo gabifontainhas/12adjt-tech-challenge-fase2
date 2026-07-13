@@ -2,9 +2,9 @@ package br.com.gabifontainhas.techchallenge.infrastructure.web.unit;
 
 import br.com.gabifontainhas.techchallenge.application.exception.RestaurantAlreadyExistsException;
 import br.com.gabifontainhas.techchallenge.application.exception.RestaurantNotFoundException;
-import br.com.gabifontainhas.techchallenge.application.usecases.restaurant.*;
-import br.com.gabifontainhas.techchallenge.domain.entities.Restaurant;
-import br.com.gabifontainhas.techchallenge.domain.valueobjects.Address;
+import br.com.gabifontainhas.techchallenge.application.usecase.restaurant.*;
+import br.com.gabifontainhas.techchallenge.domain.entity.Restaurant;
+import br.com.gabifontainhas.techchallenge.domain.valueobject.Address;
 import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.AddressDTO;
 import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.RestaurantDTO;
 import org.junit.jupiter.api.DisplayName;

@@ -2,8 +2,8 @@ package br.com.gabifontainhas.techchallenge.infrastructure.web.unit;
 
 import br.com.gabifontainhas.techchallenge.application.exception.EmailAlreadyExistsException;
 import br.com.gabifontainhas.techchallenge.application.exception.UserNotFoundException;
-import br.com.gabifontainhas.techchallenge.application.usecases.customer.*;
-import br.com.gabifontainhas.techchallenge.domain.entities.Customer;
+import br.com.gabifontainhas.techchallenge.application.usecase.customer.*;
+import br.com.gabifontainhas.techchallenge.domain.entity.Customer;
 import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.CustomerDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

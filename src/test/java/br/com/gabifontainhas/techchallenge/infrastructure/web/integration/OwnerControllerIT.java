@@ -1,6 +1,6 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web.integration;
 
-import br.com.gabifontainhas.techchallenge.infrastructure.persistance.OwnerJpaRepository;
+import br.com.gabifontainhas.techchallenge.infrastructure.persistence.OwnerJpaRepository;
 import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.OwnerDTO;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;

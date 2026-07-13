@@ -1,6 +1,6 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web;
 
-import br.com.gabifontainhas.techchallenge.application.usecases.customer.*;
+import br.com.gabifontainhas.techchallenge.application.usecase.customer.*;
 
 import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.CustomerDTO;
 import jakarta.validation.Valid;

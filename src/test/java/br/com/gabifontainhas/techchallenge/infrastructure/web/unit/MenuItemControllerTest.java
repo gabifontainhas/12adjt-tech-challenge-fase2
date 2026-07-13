@@ -2,8 +2,8 @@ package br.com.gabifontainhas.techchallenge.infrastructure.web.unit;
 
 import br.com.gabifontainhas.techchallenge.application.exception.MenuItemAlreadyExistsException;
 import br.com.gabifontainhas.techchallenge.application.exception.MenuItemNotFoundException;
-import br.com.gabifontainhas.techchallenge.application.usecases.menuitem.*;
-import br.com.gabifontainhas.techchallenge.domain.entities.MenuItem;
+import br.com.gabifontainhas.techchallenge.application.usecase.menuitem.*;
+import br.com.gabifontainhas.techchallenge.domain.entity.MenuItem;
 import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.MenuItemDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

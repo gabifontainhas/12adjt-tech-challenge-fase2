@@ -1,8 +1,8 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web.dto;
 
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.CreateRestaurantCommand;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.UpdateRestaurantCommand;
-import br.com.gabifontainhas.techchallenge.domain.entities.Restaurant;
+import br.com.gabifontainhas.techchallenge.application.usecase.dto.CreateRestaurantCommand;
+import br.com.gabifontainhas.techchallenge.application.usecase.dto.UpdateRestaurantCommand;
+import br.com.gabifontainhas.techchallenge.domain.entity.Restaurant;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

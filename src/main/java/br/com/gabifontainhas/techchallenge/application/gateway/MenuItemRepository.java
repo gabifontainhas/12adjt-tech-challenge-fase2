@@ -1,6 +1,6 @@
 package br.com.gabifontainhas.techchallenge.application.gateway;
 
-import br.com.gabifontainhas.techchallenge.domain.entities.MenuItem;
+import br.com.gabifontainhas.techchallenge.domain.entity.MenuItem;
 
 import java.util.List;
 import java.util.Optional;

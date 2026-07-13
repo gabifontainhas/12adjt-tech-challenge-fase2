@@ -3,9 +3,9 @@ package br.com.gabifontainhas.techchallenge.config;
 import br.com.gabifontainhas.techchallenge.application.gateway.MenuItemRepository;
 import br.com.gabifontainhas.techchallenge.application.gateway.OwnerRepository;
 import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
-import br.com.gabifontainhas.techchallenge.application.usecases.restaurant.*;
-import br.com.gabifontainhas.techchallenge.infrastructure.gateways.RestaurantRepositoryAdapter;
-import br.com.gabifontainhas.techchallenge.infrastructure.persistance.RestaurantJpaRepository;
+import br.com.gabifontainhas.techchallenge.application.usecase.restaurant.*;
+import br.com.gabifontainhas.techchallenge.infrastructure.gateway.RestaurantRepositoryAdapter;
+import br.com.gabifontainhas.techchallenge.infrastructure.persistence.RestaurantJpaRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

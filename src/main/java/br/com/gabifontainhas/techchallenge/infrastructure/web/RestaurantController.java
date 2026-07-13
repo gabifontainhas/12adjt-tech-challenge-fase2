@@ -1,6 +1,6 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web;
 
-import br.com.gabifontainhas.techchallenge.application.usecases.restaurant.*;
+import br.com.gabifontainhas.techchallenge.application.usecase.restaurant.*;
 import br.com.gabifontainhas.techchallenge.infrastructure.web.dto.RestaurantDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

@@ -2,9 +2,9 @@ package br.com.gabifontainhas.techchallenge.config;
 
 import br.com.gabifontainhas.techchallenge.application.gateway.OwnerRepository;
 import br.com.gabifontainhas.techchallenge.application.gateway.RestaurantRepository;
-import br.com.gabifontainhas.techchallenge.application.usecases.owner.*;
-import br.com.gabifontainhas.techchallenge.infrastructure.gateways.OwnerRepositoryAdapter;
-import br.com.gabifontainhas.techchallenge.infrastructure.persistance.OwnerJpaRepository;
+import br.com.gabifontainhas.techchallenge.application.usecase.owner.*;
+import br.com.gabifontainhas.techchallenge.infrastructure.gateway.OwnerRepositoryAdapter;
+import br.com.gabifontainhas.techchallenge.infrastructure.persistence.OwnerJpaRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

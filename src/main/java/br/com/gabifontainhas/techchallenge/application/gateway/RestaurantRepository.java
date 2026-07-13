@@ -1,6 +1,6 @@
 package br.com.gabifontainhas.techchallenge.application.gateway;
 
-import br.com.gabifontainhas.techchallenge.domain.entities.Restaurant;
+import br.com.gabifontainhas.techchallenge.domain.entity.Restaurant;
 
 import java.util.List;
 import java.util.Optional;

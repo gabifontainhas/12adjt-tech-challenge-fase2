@@ -1,8 +1,8 @@
 package br.com.gabifontainhas.techchallenge.infrastructure.web.dto;
 
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.CreateOwnerCommand;
-import br.com.gabifontainhas.techchallenge.application.usecases.dto.UpdateOwnerCommand;
-import br.com.gabifontainhas.techchallenge.domain.entities.Owner;
+import br.com.gabifontainhas.techchallenge.application.usecase.dto.CreateOwnerCommand;
+import br.com.gabifontainhas.techchallenge.application.usecase.dto.UpdateOwnerCommand;
+import br.com.gabifontainhas.techchallenge.domain.entity.Owner;
 import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
