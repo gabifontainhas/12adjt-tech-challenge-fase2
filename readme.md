@@ -6,7 +6,7 @@ Turma ADJ12
 
 ### 👥 Gestão de Usuários e Perfis
 
-A API permite gerenciar dois perfis de usuários distintos utilizando estratégias de herança de entidades no domínio:
+A API permite gerenciar perfis de usuários distintos utilizando estratégias de herança de entidades no domínio:
 * **Customer (Cliente):** Cadastro e gerenciamento de informações dos clientes.
 * **Owner (Dono de Restaurante):** Cadastro dos proprietários dos estabelecimentos.
 * **Funcionalidades:** Criação de novos usuários, alteração de dados cadastrais, consulta de informações e exclusão de cadastros de acordo com o perfil selecionado.
