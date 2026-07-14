@@ -18,11 +18,13 @@ A API permite gerenciar perfis de usuários distintos utilizando estratégias de
 ## 🏗️ Arquitetura do Projeto
 
 Para cumprir os requisitos de escalabilidade e manutenibilidade da fase, o projeto foi estruturado seguindo rigorosamente os conceitos de **Clean Architecture** e **SOLID**:
-* **Domain:** Entidades puras de negócio (`User`, `Customer`, `Owner`, `Restaurant`, `MenuItem`) e Objetos de Valor (`Address`).
-* **Application:** Casos de uso (`Use Cases`) que isolam as regras de negócio da aplicação.
-* **Interface Adapters:** Controllers REST que expõem os endpoints e Repositories de persistência.
-* **Infrastructure:** Configurações do framework Spring Boot e conexões com o banco de dados.
-
+* **Domain:** Contém as entidades puras de negócio (`User`, `Customer`, `Owner`, `Restaurant`, `MenuItem`) e os Objetos de Valor (`Address`). Esta camada é totalmente isolada e não possui dependências de frameworks.
+* **Application:** Contém as regras de negócio da aplicação através dos Casos de Uso (`Use Cases`) e declara as interfaces (gateways) de comunicação externa.
+* **Infrastructure:** A camada mais externa, responsável por frameworks, drivers e integrações:
+  * **`infrastructure.web`:** Contém os **Controllers** (adaptadores de entrada), responsáveis por expor os endpoints da API, receber as requisições HTTP, validar os DTOs e delegar a execução para os Use Cases correspondentes.
+  * **`infrastructure.gateway`:** Contém os **Adapters** que implementam as interfaces (gateways) definidas na camada de *Application*. Eles realizam a ponte entre as regras de aplicação e a persistência, fazendo a conversão/mapeamento de dados.
+  * **`infrastructure.persistence`:** Contém os detalhes específicos da persistência JPA — as entidades do banco de dados (mapeadas com as anotações do Hibernate) e as interfaces que herdam de `JpaRepository` (Spring Data JPA)
+* **`config/` (Raiz):** Classes de configuração do Spring Boot. Como as camadas de `domain` e `application` são escritas em Java puro (livres de acoplamento e sem anotações do Spring como `@Service` ou `@Component`), este pacote é responsável por instanciar manualmente os Casos de Uso como `@Bean`s do Spring, viabilizando a injeção de dependências sem poluir o núcleo do sistema.
 
 ## 🛠 Tecnologias e Ferramentas
 
