@@ -24,7 +24,7 @@ Para cumprir os requisitos de escalabilidade e manutenibilidade da fase, o proje
   * **`infrastructure.web`:** Contém os **Controllers** (adaptadores de entrada), responsáveis por expor os endpoints da API, receber as requisições HTTP, validar os DTOs e delegar a execução para os Use Cases correspondentes.
   * **`infrastructure.gateway`:** Contém os **Adapters** que implementam as interfaces (gateways) definidas na camada de *Application*. Eles realizam a ponte entre as regras de aplicação e a persistência, fazendo a conversão/mapeamento de dados.
   * **`infrastructure.persistence`:** Contém os detalhes específicos da persistência JPA — as entidades do banco de dados (mapeadas com as anotações do Hibernate) e as interfaces que herdam de `JpaRepository` (Spring Data JPA)
-* **Config:** Classes de configuração do Spring Boot. Como as camadas de `domain` e `application` são escritas em Java puro (livres de acoplamento e sem anotações do Spring como `@Service` ou `@Component`), este pacote é responsável por instanciar manualmente os Casos de Uso como `@Bean`s do Spring, viabilizando a injeção de dependências sem poluir o núcleo do sistema.
+* **Config:** Classes de configuração do Spring Boot. Como as camadas de `domain` e `application` são escritas em Java puro (livres de acoplamento e sem anotações do Spring como `@Service` ou `@Component`), este pacote é responsável por instanciar manualmente os Casos de Uso como `@Bean` do Spring, viabilizando a injeção de dependências sem poluir o núcleo do sistema.
 
 ## 🛠 Tecnologias e Ferramentas
 
