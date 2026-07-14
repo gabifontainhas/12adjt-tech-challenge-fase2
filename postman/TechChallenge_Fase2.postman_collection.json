@@ -11,12 +11,31 @@
       "item": [
         {
           "name": "POST Customer",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const resposta = pm.response.json();\r",
+                  "\r",
+                  "// 2. Salva o \"id\" que veio na resposta dentro de uma variável da Coleção chamada \"ownerId\"\r",
+                  "pm.collectionVariables.set(\"customerId\", resposta.id);\r",
+                  "\r",
+                  "// Opcional: printa no console do Postman para você acompanhar se deu certo\r",
+                  "console.log(\"UUID do Customer salvo com sucesso: \" + resposta.id);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
           "request": {
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}",
+              "raw": "{\r\n    \"email\": \"jimhalpert@dundermifflin.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -74,7 +93,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}",
+              "raw": "{\r\n    \"email\": \"jimhalpert@dundermifflin.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -97,7 +116,7 @@
           "response": []
         },
         {
-          "name": "POST Customer - Error - Method not allowed",
+          "name": "POST Customer - Error - Method Not Allowed",
           "request": {
             "method": "POST",
             "header": [],
@@ -136,7 +155,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}",
+              "raw": "",
               "options": {
                 "raw": {
                   "language": "json"
@@ -168,7 +187,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+              "raw": ""
             },
             "url": {
               "raw": "http://localhost:8080/v1/customers/5",
@@ -192,7 +211,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/v1/customers/8b9a4cea-6530-4c95-b045-ba16c4194985",
+              "raw": "http://localhost:8080/v1/customers/{{customerId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -201,14 +220,14 @@
               "path": [
                 "v1",
                 "customers",
-                "8b9a4cea-6530-4c95-b045-ba16c4194985"
+                "{{customerId}}"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "GET Customer by ID - Error - Customer Not Found",
+          "name": "GET Customer by ID - Error - Not Found",
           "request": {
             "method": "GET",
             "header": [],
@@ -229,80 +248,6 @@
           "response": []
         },
         {
-          "name": "DELETE Customer",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
-            },
-            "url": {
-              "raw": "http://localhost:8080/v1/customers/ebee4ba7-874c-4a7e-b660-c1f984d025b8",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "v1",
-                "customers",
-                "ebee4ba7-874c-4a7e-b660-c1f984d025b8"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "DELETE Customer - Error - User not found",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
-            },
-            "url": {
-              "raw": "http://localhost:8080/v1/customers/e1b68c27-6c3f-40f8-b7bb-052245a4f3b2",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "v1",
-                "customers",
-                "e1b68c27-6c3f-40f8-b7bb-052245a4f3b2"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "DELETE Customer - Error - Method not Allowed",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
-            },
-            "url": {
-              "raw": "http://localhost:8080/v1/customers",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "v1",
-                "customers"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "PUT Customer",
           "request": {
             "method": "PUT",
@@ -317,7 +262,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/v1/customers/8b9a4cea-6530-4c95-b045-ba16c4194985",
+              "raw": "http://localhost:8080/v1/customers/{{customerId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -326,14 +271,14 @@
               "path": [
                 "v1",
                 "customers",
-                "8b9a4cea-6530-4c95-b045-ba16c4194985"
+                "{{customerId}}"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "PUT Customer - Error - Customer not found",
+          "name": "PUT Customer - Error - Not Found",
           "request": {
             "method": "PUT",
             "header": [],
@@ -391,6 +336,80 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "DELETE Customer",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/customers/{{customerId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "customers",
+                "{{customerId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Customer - Error - Not Found",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/customers/e1b68c27-6c3f-40f8-b7bb-052245a4f3b2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "customers",
+                "e1b68c27-6c3f-40f8-b7bb-052245a4f3b2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Customer - Error - Method not Allowed",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/customers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "customers"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -399,12 +418,31 @@
       "item": [
         {
           "name": "POST Owner",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const resposta = pm.response.json();\r",
+                  "\r",
+                  "// 2. Salva o \"id\" que veio na resposta dentro de uma variável da Coleção chamada \"ownerId\"\r",
+                  "pm.collectionVariables.set(\"ownerId\", resposta.id);\r",
+                  "\r",
+                  "// Opcional: printa no console do Postman para você acompanhar se deu certo\r",
+                  "console.log(\"UUID do Owner salvo com sucesso: \" + resposta.id);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
           "request": {
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"michaelscott@teste.com\",\r\n    \"name\": \"Michael Scott\",\r\n    \"businessPhone\": \"1199764582\"\r\n}",
+              "raw": "{\r\n    \"email\": \"michaelscott@dundermifflin.com\",\r\n    \"name\": \"Michael Scott\",\r\n    \"businessPhone\": \"1199764582\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -433,7 +471,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"michaelscott@teste.com\",\r\n    \"name\": \"Michael Scott\",\r\n    \"businessPhone\": \"1199764582\"\r\n}",
+              "raw": "{\r\n    \"email\": \"michaelscott@dundermifflin.com\",\r\n    \"name\": \"Michael Scott\",\r\n    \"businessPhone\": \"1199764582\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -456,7 +494,7 @@
           "response": []
         },
         {
-          "name": "POST Owner - Error - Method not Allowed",
+          "name": "POST Owner - Error - Method Not Allowed",
           "request": {
             "method": "POST",
             "header": [],
@@ -495,7 +533,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+              "raw": ""
             },
             "url": {
               "raw": "http://localhost:8080/v1/owners",
@@ -522,7 +560,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+              "raw": ""
             },
             "url": {
               "raw": "http://localhost:8080/v1/owners/5",
@@ -546,7 +584,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/v1/owners/59230b21-3364-442c-995c-af0d9af07c0e",
+              "raw": "http://localhost:8080/v1/owners/{{ownerId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -555,14 +593,14 @@
               "path": [
                 "v1",
                 "owners",
-                "59230b21-3364-442c-995c-af0d9af07c0e"
+                "{{ownerId}}"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "GET Owners by ID - Error - Owner not found",
+          "name": "GET Owners by ID - Error - Not Found",
           "request": {
             "method": "GET",
             "header": [],
@@ -583,80 +621,6 @@
           "response": []
         },
         {
-          "name": "DELETE Owners",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
-            },
-            "url": {
-              "raw": "http://localhost:8080/v1/owners/bda659b1-5b78-4f6e-be3f-948b2e3a9500",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "v1",
-                "owners",
-                "bda659b1-5b78-4f6e-be3f-948b2e3a9500"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "DELETE Owners - Error - Owner not found",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
-            },
-            "url": {
-              "raw": "http://localhost:8080/v1/owners/a7959f5b-d868-4574-92d3-5cecda8d97fb",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "v1",
-                "owners",
-                "a7959f5b-d868-4574-92d3-5cecda8d97fb"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "DELETE Owners - Error - Method not allowed",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
-            },
-            "url": {
-              "raw": "http://localhost:8080/v1/owners",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "v1",
-                "owners"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "PUT Owner",
           "request": {
             "method": "PUT",
@@ -671,7 +635,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/v1/owners/59230b21-3364-442c-995c-af0d9af07c0e",
+              "raw": "http://localhost:8080/v1/owners/{{ownerId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -680,20 +644,20 @@
               "path": [
                 "v1",
                 "owners",
-                "59230b21-3364-442c-995c-af0d9af07c0e"
+                "{{ownerId}}"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "PUT Owner - Error - Owner not found",
+          "name": "PUT Owner - Error - Not Found",
           "request": {
             "method": "PUT",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Jim Halpert\",\r\n    \"businessPhone\": \"1122222222\"\r\n}",
+              "raw": "{\r\n    \"name\": \"Michael Gary Scott\",\r\n    \"businessPhone\": \"1122222222\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -745,6 +709,80 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "DELETE Owners",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/owners/{{ownerId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "owners",
+                "{{ownerId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Owners - Error - Not Found",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/owners/a7959f5b-d868-4574-92d3-5cecda8d97fb",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "owners",
+                "a7959f5b-d868-4574-92d3-5cecda8d97fb"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Owners - Error - Method Not Allowed",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/owners",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "owners"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -753,12 +791,38 @@
       "item": [
         {
           "name": "POST Restaurant",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const resposta = pm.response.json();\r",
+                  "pm.collectionVariables.set(\"restaurantId\", resposta.id);\r",
+                  "console.log(\"UUID do Restaurante salvo com sucesso: \" + resposta.id);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
           "request": {
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Dunder Mifflin\",\r\n    \"cuisineType\": \"fast food\",\r\n    \"operatingHours\": \"10 - 19\",\r\n    \"ownerId\": \"59230b21-3364-442c-995c-af0d9af07c0e\",\r\n    \"address\": {\r\n        \"street\": \"Rua Um\",\r\n        \"number\": \"120\",\r\n        \"neighborhood\": \"Vila Leopoldina\",\r\n        \"city\": \"Sao Paulo\",\r\n        \"state\": \"SP\",\r\n        \"zipCode\": \"05098070\"\r\n    }        \r\n}",
+              "raw": "{\r\n    \"name\": \"Mario Pizza\",\r\n    \"cuisineType\": \"Italian food\",\r\n    \"operatingHours\": \"18 - 23\",\r\n    \"ownerId\": \"{{ownerId}}\",\r\n    \"address\": {\r\n        \"street\": \"Main Street\",\r\n        \"number\": \"120\",\r\n        \"neighborhood\": \"Downtown\",\r\n        \"city\": \"New York\",\r\n        \"state\": \"NY\",\r\n        \"zipCode\": \"00990000\"\r\n    }        \r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -787,7 +851,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Dunder Mifflin\",\r\n    \"cuisineType\": \"fast food\",\r\n    \"operatingHours\": \"10 - 19\",\r\n    \"ownerId\": \"ffc711cc-1b43-4085-a0ac-8d5588846cee\",\r\n    \"address\": {\r\n        \"street\": \"Rua Um\",\r\n        \"number\": \"120\",\r\n        \"neighborhood\": \"Vila Leopoldina\",\r\n        \"city\": \"Sao Paulo\",\r\n        \"state\": \"SP\",\r\n        \"zipCode\": \"05098070\"\r\n    }        \r\n}",
+              "raw": "{\r\n    \"name\": \"Mario Pizza\",\r\n    \"cuisineType\": \"Italian food\",\r\n    \"operatingHours\": \"18 - 23\",\r\n    \"ownerId\": \"{{ownerId}}\",\r\n    \"address\": {\r\n        \"street\": \"Main Street\",\r\n        \"number\": \"120\",\r\n        \"neighborhood\": \"Downtown\",\r\n        \"city\": \"New York\",\r\n        \"state\": \"NY\",\r\n        \"zipCode\": \"00990000\"\r\n    }        \r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -849,7 +913,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+              "raw": ""
             },
             "url": {
               "raw": "http://localhost:8080/v1/restaurants",
@@ -876,10 +940,10 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+              "raw": ""
             },
             "url": {
-              "raw": "http://localhost:8080/v1/restaurants",
+              "raw": "http://localhost:8080/v1/restaurants/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -887,7 +951,8 @@
               "port": "8080",
               "path": [
                 "v1",
-                "restaurants"
+                "restaurants",
+                "1"
               ]
             }
           },
@@ -899,7 +964,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/v1/restaurants/678be033-7f4e-4dd8-ac47-b9b0bc9c3c3a",
+              "raw": "http://localhost:8080/v1/restaurants/{{restaurantId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -908,67 +973,17 @@
               "path": [
                 "v1",
                 "restaurants",
-                "678be033-7f4e-4dd8-ac47-b9b0bc9c3c3a"
+                "{{restaurantId}}"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "GET Restaurants by ID - Error - Restaurant not found",
+          "name": "GET Restaurants by ID - Error - Not Found",
           "request": {
             "method": "GET",
             "header": [],
-            "url": {
-              "raw": "http://localhost:8080/v1/restaurants/0b96aa29-6e6d-4734-9047-a9d819646093",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "v1",
-                "restaurants",
-                "0b96aa29-6e6d-4734-9047-a9d819646093"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "DELETE Restaurant",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
-            },
-            "url": {
-              "raw": "http://localhost:8080/v1/restaurants/0b96aa29-6e6d-4734-9047-a9d819646093",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "v1",
-                "restaurants",
-                "0b96aa29-6e6d-4734-9047-a9d819646093"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "DELETE Restaurant - Error - Restaurant not found",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
-            },
             "url": {
               "raw": "http://localhost:8080/v1/restaurants/0b96aa29-6e6d-4734-9047-a9d819646093",
               "protocol": "http",
@@ -992,7 +1007,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Dunder Mifflin4\",\r\n    \"cuisineType\": \"fast food\",\r\n    \"operatingHours\": \"10 - 19\",\r\n    \"ownerId\": \"fa4ff39f-b089-4aec-a13b-3aa786f36b25\",\r\n    \"address\": {\r\n        \"street\": \"Rua Um\",\r\n        \"number\": \"120\",\r\n        \"neighborhood\": \"Vila Leopoldina\",\r\n        \"city\": \"Sao Paulo\",\r\n        \"state\": \"SP\",\r\n        \"zipCode\": \"05098070\"\r\n    }        \r\n}",
+              "raw": "{\r\n    \"name\": \"Holy Burger\",\r\n    \"cuisineType\": \"Fast food\",\r\n    \"operatingHours\": \"12 - 22\",\r\n    \"ownerId\": \"{{ownerId}}\",\r\n    \"address\": {\r\n        \"street\": \"5th Street\",\r\n        \"number\": \"987\",\r\n        \"neighborhood\": \"Downtown\",\r\n        \"city\": \"New Jersey\",\r\n        \"state\": \"NY\",\r\n        \"zipCode\": \"00998888\"\r\n    }        \r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1000,7 +1015,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/v1/restaurants/10fbf4c5-7252-47da-a920-fd4f4655c8db",
+              "raw": "http://localhost:8080/v1/restaurants/{{restaurantId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1009,7 +1024,7 @@
               "path": [
                 "v1",
                 "restaurants",
-                "10fbf4c5-7252-47da-a920-fd4f4655c8db"
+                "{{restaurantId}}"
               ]
             }
           },
@@ -1022,7 +1037,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Dunder Mifflin4\",\r\n    \"cuisineType\": \"fast food\",\r\n    \"operatingHours\": \"10 - 19\",\r\n    \"ownerId\": \"fa4ff39f-b089-4aec-a13b-3aa786f36b25\",\r\n    \"address\": {\r\n        \"street\": \"Rua Um\",\r\n        \"number\": \"120\",\r\n        \"neighborhood\": \"Vila Leopoldina\",\r\n        \"city\": \"Sao Paulo\",\r\n        \"state\": \"SP\",\r\n        \"zipCode\": \"05098070\"\r\n    }        \r\n}",
+              "raw": "{\r\n    \"name\": \"Mario Pizza\",\r\n    \"cuisineType\": \"Italian food\",\r\n    \"operatingHours\": \"18 - 23\",\r\n    \"ownerId\": \"0b962229-6e6d-4734-9047-a9d819646093\",\r\n    \"address\": {\r\n        \"street\": \"Main Street\",\r\n        \"number\": \"120\",\r\n        \"neighborhood\": \"Downtown\",\r\n        \"city\": \"New York\",\r\n        \"state\": \"NY\",\r\n        \"zipCode\": \"00990000\"\r\n    }        \r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1030,7 +1045,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/v1/restaurants/10fbf4c5-7252-47da-a920-fd4f4655c8db",
+              "raw": "http://localhost:8080/v1/restaurants/{{restaurantId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1039,7 +1054,7 @@
               "path": [
                 "v1",
                 "restaurants",
-                "10fbf4c5-7252-47da-a920-fd4f4655c8db"
+                "{{restaurantId}}"
               ]
             }
           },
@@ -1052,7 +1067,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Dunder Mifflin4\",\r\n    \"cuisineType\": \"fast food\",\r\n    \"operatingHours\": \"10 - 19\",\r\n    \"ownerId\": \"fa4ff39f-b089-4aec-a13b-3aa786f36b25\",\r\n    \"address\": {\r\n        \"street\": \"Rua Um\",\r\n        \"number\": \"120\",\r\n        \"neighborhood\": \"Vila Leopoldina\",\r\n        \"city\": \"Sao Paulo\",\r\n        \"state\": \"SP\",\r\n        \"zipCode\": \"05098070\"\r\n    }        \r\n}",
+              "raw": "{\r\n    \"name\": \"Holy Burger\",\r\n    \"cuisineType\": \"Fast food\",\r\n    \"operatingHours\": \"12 - 22\",\r\n    \"ownerId\": \"{{ownerId}}\",\r\n    \"address\": {\r\n        \"street\": \"5th Street\",\r\n        \"number\": \"987\",\r\n        \"neighborhood\": \"Downtown\",\r\n        \"city\": \"New Jersey\",\r\n        \"state\": \"NY\",\r\n        \"zipCode\": \"00998888\"\r\n    }        \r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1082,7 +1097,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Dunder Mifflin4\",\r\n    \"operatingHours\": \"10 - 19\",\r\n    \"ownerId\": \"fffc711cc-1b43-4085-a0ac-8d5588846cee\",\r\n    \"address\": {\r\n        \"street\": \"Rua Um\",\r\n        \"number\": \"120\",\r\n        \"neighborhood\": \"Vila Leopoldina\",\r\n        \"city\": \"Sao Paulo\",\r\n        \"state\": \"SP\",\r\n        \"zipCode\": \"05098070\"\r\n    }        \r\n}",
+              "raw": "{\r\n    \"name\": \"Holy Burger\",   \r\n    \"ownerId\": \"{{ownerId}}\",\r\n    \"address\": {\r\n        \"street\": \"\",\r\n        \"number\": \"987\",\r\n        \"neighborhood\": \"Downtown\",\r\n        \"city\": \"New Jersey\",\r\n        \"state\": \"NY\",\r\n        \"zipCode\": \"00998888\"\r\n    }        \r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1104,6 +1119,56 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "DELETE Restaurant",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/restaurants/{{restaurantId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "restaurants",
+                "{{restaurantId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Restaurant - Error - Restaurant not found",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/restaurants/0b96aa29-6e6d-4734-9047-a9d819646093",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "restaurants",
+                "0b96aa29-6e6d-4734-9047-a9d819646093"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -1112,12 +1177,27 @@
       "item": [
         {
           "name": "POST MenuItem",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const resposta = pm.response.json();\r",
+                  "pm.collectionVariables.set(\"menuItemId\", resposta.id);\r",
+                  "console.log(\"UUID do MenuItem salvo com sucesso: \" + resposta.id);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
           "request": {
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"hamburguer2\",\r\n    \"description\": \"pao e carne\",\r\n    \"price\": 39.90,\r\n    \"dineInOnly\": false,\r\n    \"imagePath\": \"http://hamburger.jpg\",\r\n    \"restaurantId\": \"d6d453b5-dde6-4087-a527-55975a754bf8\"\r\n}",
+              "raw": "{\r\n    \"name\": \"Cheeseburger\",\r\n    \"description\": \"pão, carne e queijo\",\r\n    \"price\": 39.90,\r\n    \"dineInOnly\": false,\r\n    \"imagePath\": \"http://cheeseburger.jpg\",\r\n    \"restaurantId\": \"{{restaurantId}}\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1146,7 +1226,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"hamburguer2\",\r\n    \"description\": \"pao e carne\",\r\n    \"price\": 39.90,\r\n    \"dineInOnly\": false,\r\n    \"imagePath\": \"http://hamburger.jpg\",\r\n    \"restaurantId\": \"49376e8c-7ef2-47d7-959c-4302fb7c879e\"\r\n}",
+              "raw": "{\r\n    \"name\": \"Cheeseburger\",\r\n    \"description\": \"pão, carne e queijo\",\r\n    \"price\": 39.90,\r\n    \"dineInOnly\": false,\r\n    \"imagePath\": \"http://cheeseburger.jpg\",\r\n    \"restaurantId\": \"{{restaurantId}}\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1175,7 +1255,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"hamburguer2\",\r\n    \"description\": \"pao e carne\",\r\n    \"price\": 39.90,\r\n    \"dineInOnly\": false,\r\n    \"imagePath\": \"http://hamburger.jpg\",\r\n    \"restaurantId\": \"49376e8c-7ef2-47d7-959c-4302fb7c879e\"\r\n}",
+              "raw": "{\r\n    \"name\": \"Cheeseburger\",\r\n    \"description\": \"pão, carne e queijo\",\r\n    \"price\": 39.90,\r\n    \"dineInOnly\": false,\r\n    \"imagePath\": \"http://cheeseburger.jpg\",\r\n    \"restaurantId\": \"49376e8c-7ef2-47d7-959c-4302fb7c879e\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1207,7 +1287,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+              "raw": ""
             },
             "url": {
               "raw": "http://localhost:8080/v1/menuItems",
@@ -1234,7 +1314,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+              "raw": ""
             },
             "url": {
               "raw": "http://localhost:8080/v1/menuItems/1",
@@ -1258,7 +1338,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/v1/menuItems/restaurant/d6d453b5-dde6-4087-a527-55975a754bf8",
+              "raw": "http://localhost:8080/v1/menuItems/restaurant/{{restaurantId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1268,7 +1348,7 @@
                 "v1",
                 "menuItems",
                 "restaurant",
-                "d6d453b5-dde6-4087-a527-55975a754bf8"
+                "{{restaurantId}}"
               ]
             }
           },
@@ -1302,7 +1382,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/v1/menuItems/62a84ab8-1929-431c-87a1-5e9fcd751f25",
+              "raw": "http://localhost:8080/v1/menuItems/{{menuItemId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1311,14 +1391,14 @@
               "path": [
                 "v1",
                 "menuItems",
-                "62a84ab8-1929-431c-87a1-5e9fcd751f25"
+                "{{menuItemId}}"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "GET MenuItem by ID - Error - MenuItem not found",
+          "name": "GET MenuItem by ID - Error - Not Found",
           "request": {
             "method": "GET",
             "header": [],
@@ -1339,63 +1419,13 @@
           "response": []
         },
         {
-          "name": "DELETE MenuItem",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
-            },
-            "url": {
-              "raw": "http://localhost:8080/v1/menuItems/dd5bb1cf-095d-4c5e-a2ba-a28f513bb585",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "v1",
-                "menuItems",
-                "dd5bb1cf-095d-4c5e-a2ba-a28f513bb585"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "DELETE MenuItem - Error - Menu Item Not found",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
-            },
-            "url": {
-              "raw": "http://localhost:8080/v1/menuItems/dd5bb1cf-095d-4c5e-a2ba-a28f513bb585",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "v1",
-                "menuItems",
-                "dd5bb1cf-095d-4c5e-a2ba-a28f513bb585"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "PUT MenuItems",
           "request": {
             "method": "PUT",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"cheeseburguer\",\r\n    \"description\": \"pao e carne e queijo\",\r\n    \"price\": 49.90,\r\n    \"dineInOnly\": false,\r\n    \"imagePath\": \"http://hamburger.jpg\",\r\n    \"restaurantId\": \"49376e8c-7ef2-47d7-959c-4302fb7c879e\"\r\n}",
+              "raw": "{\r\n    \"name\": \"milkshake\",\r\n    \"description\": \"sorvete e leite e chocolate\",\r\n    \"price\": 25.90,\r\n    \"dineInOnly\": true,\r\n    \"imagePath\": \"http://milkshake.jpg\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1403,7 +1433,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/v1/menuItems/fd8d11b4-f481-4e62-915e-97dda7514fb5",
+              "raw": "http://localhost:8080/v1/menuItems/{{menuItemId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1412,7 +1442,7 @@
               "path": [
                 "v1",
                 "menuItems",
-                "fd8d11b4-f481-4e62-915e-97dda7514fb5"
+                "{{menuItemId}}"
               ]
             }
           },
@@ -1425,7 +1455,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"cheeseburguer\",\r\n    \"description\": \"pao e carne e queijo\",\r\n    \"price\": 49.90,\r\n    \"dineInOnly\": false,\r\n    \"imagePath\": \"http://hamburger.jpg\",\r\n    \"restaurantId\": \"49376e8c-7ef2-47d7-959c-4302fb7c879e\"\r\n}",
+              "raw": "{\r\n    \"name\": \"milkshake\",\r\n    \"description\": \"sorvete e leite e chocolate\",\r\n    \"price\": 25.90,\r\n    \"dineInOnly\": true,\r\n    \"imagePath\": \"http://milkshake.jpg\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1455,7 +1485,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"cheeseburguer\",\r\n    \"description\": \"pao e carne e queijo\",\r\n    \"dineInOnly\": false,\r\n    \"imagePath\": \"http://hamburger.jpg\",\r\n    \"restaurantId\": \"49376e8c-7ef2-47d7-959c-4302fb7c879e\"\r\n}",
+              "raw": "{\r\n    \"name\": \"milkshake\",\r\n    \"price\": null,\r\n    \"dineInOnly\": true,\r\n    \"imagePath\": \"http://milkshake.jpg\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1477,8 +1507,463 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "DELETE MenuItem",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/menuItems/{{menuItemId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "menuItems",
+                "{{menuItemId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE MenuItem - Error - Not Found",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"jimhalpert@teste.com\",\r\n    \"name\": \"Jim Halpert\",\r\n    \"phoneNumber\": \"11999995555\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/v1/menuItems/dd5bb1cf-095d-4c5e-a2ba-a28f513bb585",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "v1",
+                "menuItems",
+                "dd5bb1cf-095d-4c5e-a2ba-a28f513bb585"
+              ]
+            }
+          },
+          "response": []
         }
       ]
+    },
+    {
+      "name": "delete - special rules",
+      "item": [
+        {
+          "name": "delete owner",
+          "item": [
+            {
+              "name": "POST Owner - 1st step",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const resposta = pm.response.json();\r",
+                      "\r",
+                      "// 2. Salva o \"id\" que veio na resposta dentro de uma variável da Coleção chamada \"ownerId\"\r",
+                      "pm.collectionVariables.set(\"ownerId\", resposta.id);\r",
+                      "\r",
+                      "// Opcional: printa no console do Postman para você acompanhar se deu certo\r",
+                      "console.log(\"UUID do Owner salvo com sucesso: \" + resposta.id);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"michaelscott@dundermifflin.com\",\r\n    \"name\": \"Michael Scott\",\r\n    \"businessPhone\": \"1199764582\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/v1/owners",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "v1",
+                    "owners"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST Restaurant - 2nd step",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const resposta = pm.response.json();\r",
+                      "pm.collectionVariables.set(\"restaurantId\", resposta.id);\r",
+                      "console.log(\"UUID do Restaurante salvo com sucesso: \" + resposta.id);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Mario Pizza\",\r\n    \"cuisineType\": \"Italian food\",\r\n    \"operatingHours\": \"18 - 23\",\r\n    \"ownerId\": \"{{ownerId}}\",\r\n    \"address\": {\r\n        \"street\": \"Main Street\",\r\n        \"number\": \"120\",\r\n        \"neighborhood\": \"Downtown\",\r\n        \"city\": \"New York\",\r\n        \"state\": \"NY\",\r\n        \"zipCode\": \"00990000\"\r\n    }        \r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/v1/restaurants",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "v1",
+                    "restaurants"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET Restaurants - 3rd step",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "http://localhost:8080/v1/restaurants",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "v1",
+                    "restaurants"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "DELETE Owners 4th step - Cannot delete owner - has restaurant",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "http://localhost:8080/v1/owners/{{ownerId}}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "v1",
+                    "owners",
+                    "{{ownerId}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "delete restaurant",
+          "item": [
+            {
+              "name": "POST Restaurant - 1st step",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const resposta = pm.response.json();\r",
+                      "pm.collectionVariables.set(\"restaurantId\", resposta.id);\r",
+                      "console.log(\"UUID do Restaurante salvo com sucesso: \" + resposta.id);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Mario Pizza\",\r\n    \"cuisineType\": \"Italian food\",\r\n    \"operatingHours\": \"18 - 23\",\r\n    \"ownerId\": \"{{ownerId}}\",\r\n    \"address\": {\r\n        \"street\": \"Main Street\",\r\n        \"number\": \"120\",\r\n        \"neighborhood\": \"Downtown\",\r\n        \"city\": \"New York\",\r\n        \"state\": \"NY\",\r\n        \"zipCode\": \"00990000\"\r\n    }        \r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/v1/restaurants",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "v1",
+                    "restaurants"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST MenuItem - 2nd step",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const resposta = pm.response.json();\r",
+                      "pm.collectionVariables.set(\"menuItemId\", resposta.id);\r",
+                      "console.log(\"UUID do MenuItem salvo com sucesso: \" + resposta.id);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Cheeseburger\",\r\n    \"description\": \"pão, carne e queijo\",\r\n    \"price\": 39.90,\r\n    \"dineInOnly\": false,\r\n    \"imagePath\": \"http://cheeseburger.jpg\",\r\n    \"restaurantId\": \"{{restaurantId}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/v1/menuItems",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "v1",
+                    "menuItems"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST MenuItem - 3nd step",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const resposta = pm.response.json();\r",
+                      "pm.collectionVariables.set(\"menuItemId\", resposta.id);\r",
+                      "console.log(\"UUID do MenuItem salvo com sucesso: \" + resposta.id);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Cheeseburger\",\r\n    \"description\": \"pão, carne e queijo\",\r\n    \"price\": 39.90,\r\n    \"dineInOnly\": false,\r\n    \"imagePath\": \"http://cheeseburger.jpg\",\r\n    \"restaurantId\": \"{{restaurantId}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/v1/menuItems",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "v1",
+                    "menuItems"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET MenuItems by RestaurantID - 4th step",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/v1/menuItems/restaurant/{{restaurantId}}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "v1",
+                    "menuItems",
+                    "restaurant",
+                    "{{restaurantId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "DELETE Restaurant - 5th step",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "http://localhost:8080/v1/restaurants/{{restaurantId}}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "v1",
+                    "restaurants",
+                    "{{restaurantId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET MenuItems - 6th step",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "http://localhost:8080/v1/menuItems",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "v1",
+                    "menuItems"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "ownerId",
+      "value": ""
+    },
+    {
+      "key": "restaurantId",
+      "value": ""
+    },
+    {
+      "key": "customerId",
+      "value": ""
+    },
+    {
+      "key": "menuItemId",
+      "value": ""
     }
   ]
 }
